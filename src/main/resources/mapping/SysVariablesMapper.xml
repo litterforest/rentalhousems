@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cobee.rentalhousems.dao.impl.SysVariablesMapper">
+	
+	<select id="list" resultType="SysVariables" >
+	
+		select * from sys_variables where del_flag = 0
+	
+	</select>
+	
+	<select id="get" resultType="SysVariables" parameterType="integer" >
+		select * from sys_variables where id = #{id}
+	</select>
+	
+	<update id="delete" parameterType="integer" >
+		delete from sys_variables where id = #{id}
+	</update>
+	
+	<update id="insertBySelective" parameterType="SysVariables">
+		
+		insert into sys_variables
+		(
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					create_date,
+				</if>
+				<if test="createBy != null">
+					create_by,
+				</if>
+				<if test="updateDate != null">
+					update_date,
+				</if>
+				<if test="updateBy != null">
+					update_by,
+				</if>
+				<if test="remarks != null">
+					remarks,
+				</if>
+				<if test="currentRentingPowerConsumption != null">
+					current_Renting_Power_Consumption,
+				</if>
+				<if test="currentBerthPowerConsumption != null">
+					current_Berth_Power_Consumption,
+				</if>
+				<if test="standardRentingElectricity != null">
+					standard_Renting_Electricity,
+				</if>
+				<if test="standardBerthElectricity != null">
+					standard_Berth_Electricity,
+				</if>
+				
+				
+				
+			</trim>
+		) values (
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					#{createDate},
+				</if>
+				<if test="createBy != null">
+					#{createBy},
+				</if>
+				<if test="updateDate != null">
+					#{updateDate},
+				</if>
+				<if test="updateBy != null">
+					#{updateBy},
+				</if>
+				<if test="remarks != null">
+					#{remarks},
+				</if>
+				<if test="currentRentingPowerConsumption != null">
+					#{currentRentingPowerConsumption},
+				</if>
+				<if test="currentBerthPowerConsumption != null">
+					#{currentBerthPowerConsumption},
+				</if>
+				<if test="standardRentingElectricity != null">
+					#{standardRentingElectricity},
+				</if>
+				<if test="standardBerthElectricity != null">
+					#{standardBerthElectricity},
+				</if>
+				
+				
+				
+			</trim>
+		)
+	
+	</update>
+	
+	<update id="updateBySelective" parameterType="SysVariables">
+		
+		update sys_variables set 
+		
+		<trim suffixOverrides=",">
+		
+				<if test="createDate != null">
+					create_Date = #{createDate},
+				</if>
+				<if test="createBy != null">
+					create_By = #{createBy},
+				</if>
+				<if test="updateDate != null">
+					update_Date = #{updateDate},
+				</if>
+				<if test="updateBy != null">
+					update_By = #{updateBy},
+				</if>
+				<if test="remarks != null">
+					#{remarks},
+				</if>
+				<if test="currentRentingPowerConsumption != null">
+					current_Renting_Power_Consumption = #{currentRentingPowerConsumption},
+				</if>
+				<if test="currentBerthPowerConsumption != null">
+					current_Berth_Power_Consumption = #{currentBerthPowerConsumption},
+				</if>
+				<if test="standardRentingElectricity != null">
+					standard_Renting_Electricity = #{standardRentingElectricity},
+				</if>
+				<if test="standardBerthElectricity != null">
+					standard_Berth_Electricity = #{standardBerthElectricity},
+				</if>
+				
+			</trim>
+		
+		where id = #{id}
+	
+	</update>
+	
+	
+</mapper>

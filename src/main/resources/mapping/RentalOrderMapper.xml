@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cobee.rentalhousems.dao.impl.RentalOrderMapper">
+	
+	<select id="list" resultType="RentalOrder" >
+	
+		select a.* from rental_order a 
+		where
+		<trim prefixOverrides="and" >
+		
+			<if test="status != null">
+				and a.status = #{status}
+			</if>
+			
+			<if test="delFlag != null">
+				and a.del_Flag = #{delFlag}
+			</if>
+		
+		</trim>
+		
+		order by a.year desc, a.month desc
+	
+	</select>
+	
+	<select id="get" resultType="RentalOrder" parameterType="integer" >
+	
+		select a.* from rental_order a where a.id = #{id}
+		
+	</select>
+	
+	<update id="delete" parameterType="integer" >
+	
+		delete from rental_order where id = #{id}
+		
+	</update>
+	
+	<update id="insertBySelective" parameterType="RentalOrder">
+		
+		insert into rental_order
+		(
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					create_date,
+				</if>
+				<if test="createBy != null">
+					create_by,
+				</if>
+				<if test="updateDate != null">
+					update_date,
+				</if>
+				<if test="updateBy != null">
+					update_by,
+				</if>
+				<if test="remarks != null">
+					remarks,
+				</if>
+				<if test="year != null">
+					year,
+				</if>
+				<if test="month != null">
+					month,
+				</if>
+				<if test="rentalAmount != null">
+					rental_amount,
+				</if>
+				<if test="electricityAmount != null">
+					electricity_amount,
+				</if>
+				<if test="powerConsumption != null">
+					power_consumption,
+				</if>
+				<if test="totalAmount != null">
+					total_amount,
+				</if>
+				<if test="rentalType != null">
+					rental_type,
+				</if>
+				<if test="status != null">
+					status,
+				</if>
+				<if test="lastPowerConsumption != null">
+					last_Power_Consumption,
+				</if>
+				<if test="deductionAmount != null">
+					deduction_Amount,
+				</if>
+				<if test="diffPowerConsumption != null">
+					diff_Power_Consumption,
+				</if>
+			</trim>
+		) values (
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					#{createDate},
+				</if>
+				<if test="createBy != null">
+					#{createBy},
+				</if>
+				<if test="updateDate != null">
+					#{updateDate},
+				</if>
+				<if test="updateBy != null">
+					#{updateBy},
+				</if>
+				<if test="remarks != null">
+					#{remarks},
+				</if>
+				<if test="year != null">
+					#{year},
+				</if>
+				<if test="month != null">
+					#{month},
+				</if>
+				<if test="rentalAmount != null">
+					#{rentalAmount},
+				</if>
+				<if test="electricityAmount != null">
+					#{electricityAmount},
+				</if>
+				<if test="powerConsumption != null">
+					#{powerConsumption},
+				</if>
+				<if test="totalAmount != null">
+					#{totalAmount},
+				</if>
+				<if test="rentalType != null">
+					#{rentalType},
+				</if>
+				<if test="status != null">
+					#{status},
+				</if>
+				<if test="lastPowerConsumption != null">
+					#{lastPowerConsumption},
+				</if>
+				<if test="deductionAmount != null">
+					#{deductionAmount},
+				</if>
+				<if test="diffPowerConsumption != null">
+					#{diffPowerConsumption},
+				</if>
+			</trim>
+		)
+	
+	</update>
+	
+	<update id="updateBySelective" parameterType="RentalOrder">
+		
+		update rental_order set 
+		
+		<trim suffixOverrides=",">
+				<if test="createDate != null">
+					create_date = #{createDate},
+				</if>
+				<if test="createBy != null">
+					create_by = #{createBy},
+				</if>
+				<if test="updateDate != null">
+					update_date = #{updateDate},
+				</if>
+				<if test="updateBy != null">
+					update_by = #{updateBy},
+				</if>
+				<if test="remarks != null">
+					remarks = #{remarks},
+				</if>
+				<if test="year != null">
+					year = #{year},
+				</if>
+				<if test="month != null">
+					month = #{month},
+				</if>
+				<if test="rentalAmount != null">
+					rental_amount = #{rentalAmount},
+				</if>
+				<if test="electricityAmount != null">
+					electricity_amount = #{electricityAmount},
+				</if>
+				<if test="powerConsumption != null">
+					power_consumption = #{powerConsumption},
+				</if>
+				<if test="totalAmount != null">
+					total_amount = #{totalAmount},
+				</if>
+				<if test="rentalType != null">
+					rental_type = #{rentalType},
+				</if>
+				<if test="status != null">
+					status = #{status},
+				</if>
+				<if test="lastPowerConsumption != null">
+					last_Power_Consumption = #{lastPowerConsumption},
+				</if>
+				<if test="deductionAmount != null">
+					deduction_Amount = #{deductionAmount},
+				</if>
+				<if test="diffPowerConsumption != null">
+					diff_Power_Consumption = #{diffPowerConsumption},
+				</if>
+				<if test="delFlag != null">
+					del_flag = #{delFlag},
+				</if>
+			</trim>
+		
+		where id = #{id}
+	
+	</update>
+	
+	
+</mapper>
