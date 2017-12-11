@@ -8,13 +8,23 @@
 <title>收费订单列表</title>
 </head>
 <body>
+	<form action="${ctx }/rentalorder/list" method="get" >
 	<p>
-		<a href="${ctx }/rentalorder/form" >添加</a>
+		收租类型:<select name="rentalType" >
+					<option value="">全部</option>
+					<option value="0">房租</option>
+					<option value="1">铺租</option>
+				</select>
 	</p>
+	<p>
+		<input type="button" value="添加" onclick="location='${ctx }/rentalorder/form'" > <input type="submit" value="查询" >
+	</p>
+	</form>
 	<table border="1">
 		<tr>
 			<th>操作</th>
 			<th>收费日期</th>
+			<th>收租类型</th>
 			<th>租费</th>
 			<th>电费</th>
 			<th>扣减</th>
@@ -29,6 +39,7 @@
 					<tr>
 						<td></td>
 						<td>${rentalOrder.year }-${rentalOrder.month }</td>
+						<td>${rentalOrder.rentalTypeDesc }</td>
 						<td>${rentalOrder.rentalAmount }</td>
 						<td>${rentalOrder.electricityAmount }</td>
 						<td>${rentalOrder.deductionAmount }</td>
@@ -41,7 +52,7 @@
 			
 			<c:otherwise>
 				<tr>
-					<td colspan="8" align="center" >暂时还没有收费单数据</td>
+					<td colspan="9" align="center" >暂时还没有收费单数据</td>
 				</tr>
 			</c:otherwise>
 			

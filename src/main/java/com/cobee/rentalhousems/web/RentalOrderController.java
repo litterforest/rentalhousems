@@ -20,11 +20,9 @@ public class RentalOrderController extends AbstractController {
 	private RentalOrderService rentalOrderService;
 	
 	@GetMapping("/list")
-	public String list(Model model)
+	public String list(RentalOrder rentalOrder, Model model)
 	{
-		RentalOrder rentalOrderQuery = new RentalOrder();
-		rentalOrderQuery.setDelFlag(0);
-		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrderQuery);
+		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrder);
 		model.addAttribute("rentalOrderList", rentalOrderList);
 		return "rentalOrderList";
 		

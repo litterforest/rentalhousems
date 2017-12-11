@@ -8,7 +8,7 @@
 
 	<typeAliases>
 	
-		<typeAlias type="com.cobee.rentalhousems.entity.RentalOrder" alias="RentalOrder" />
+		<typeAlias type="com.cobee.rentalhousems.entity.logical.RentalOrderLogic" alias="RentalOrder" />
 		<typeAlias type="com.cobee.rentalhousems.entity.SysVariables" alias="SysVariables" />
 		
 	</typeAliases>
