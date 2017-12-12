@@ -1,5 +1,7 @@
 package com.cobee.rentalhousems.service;
 
-public interface SysVariablesService {
+import com.cobee.rentalhousems.entity.SysVariables;
+
+public interface SysVariablesService extends BaseService<SysVariables> {
 
 }

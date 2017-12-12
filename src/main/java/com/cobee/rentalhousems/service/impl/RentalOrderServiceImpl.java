@@ -16,23 +16,14 @@ import com.cobee.rentalhousems.service.RentalOrderService;
 
 @Service
 @Transactional(readOnly = true)
-public class RentalOrderServiceImpl extends AbstractService implements RentalOrderService {
+public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOrderDao> implements RentalOrderService {
 	
 	@Autowired
 	private SysVariablesDao sysVariablesDao;
-	
-	@Autowired
-	private RentalOrderDao rentalOrderDao;
-	
-	public List<RentalOrder> list(RentalOrder rentalOrder)
-	{
-		
-		return rentalOrderDao.list(rentalOrder);
-	}
 
-	@Transactional(readOnly = false)
 	@Override
-	public void save(RentalOrder rentalOrder) {
+	@Transactional(readOnly = false)
+	public void createRentalOrder(RentalOrder rentalOrder) {
 		
 		List<SysVariables> sysVariablesList = sysVariablesDao.list(new SysVariables());
 		SysVariables sysVariables = sysVariablesList.get(0);
@@ -60,7 +51,7 @@ public class RentalOrderServiceImpl extends AbstractService implements RentalOrd
 		Double totalAmount = rentalOrder.getRentalAmount() + rentalOrder.getElectricityAmount() - rentalOrder.getDeductionAmount();
 		rentalOrder.setTotalAmount(totalAmount);
 		
-		rentalOrderDao.insertBySelective(rentalOrder);
+		save(rentalOrder);
 		
 	}
 	

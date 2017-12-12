@@ -1,13 +1,9 @@
 package com.cobee.rentalhousems.service;
 
-import java.util.List;
-
 import com.cobee.rentalhousems.entity.RentalOrder;
 
-public interface RentalOrderService {
+public interface RentalOrderService extends BaseService<RentalOrder> {
 
-	List<RentalOrder> list(RentalOrder rentalOrder);
-	
-	void save(RentalOrder rentalOrder);
+	void createRentalOrder(RentalOrder rentalOrder);
 	
 }

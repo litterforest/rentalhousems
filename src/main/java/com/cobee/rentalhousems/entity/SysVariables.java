@@ -3,14 +3,13 @@ package com.cobee.rentalhousems.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class SysVariables implements Serializable {
+public class SysVariables extends BaseEntity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8507953507283481L;
 
-	private Integer id;
 	private Date createDate;
 	private String createBy;
 	private Date updateDate;
@@ -25,12 +24,8 @@ public class SysVariables implements Serializable {
 	// 铺位每度电的收费标准
 	private Double standardBerthElectricity;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public SysVariables() {
+		super();
 	}
 
 	public Date getCreateDate() {

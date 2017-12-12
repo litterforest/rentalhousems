@@ -1,16 +1,14 @@
 package com.cobee.rentalhousems.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class RentalOrder implements Serializable {
+public class RentalOrder extends BaseEntity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3827501685095969463L;
 
-	private Integer id;
 	private Date createDate;
 	private String createBy;
 	private Date updateDate;
@@ -41,31 +39,6 @@ public class RentalOrder implements Serializable {
 
 	public RentalOrder() {
 		super();
-	}
-
-	public RentalOrder(Integer id, Date createDate, String createBy, Date updateDate, String updateBy, String remarks,
-			String year, String month, Double rentalAmount, Double electricityAmount, Double powerConsumption,
-			Double totalAmount, Integer rentalType, Integer status, Double lastPowerConsumption, Integer delFlag,
-			Double deductionAmount, Double diffPowerConsumption) {
-		super();
-		this.id = id;
-		this.createDate = createDate;
-		this.createBy = createBy;
-		this.updateDate = updateDate;
-		this.updateBy = updateBy;
-		this.remarks = remarks;
-		this.year = year;
-		this.month = month;
-		this.rentalAmount = rentalAmount;
-		this.electricityAmount = electricityAmount;
-		this.powerConsumption = powerConsumption;
-		this.totalAmount = totalAmount;
-		this.rentalType = rentalType;
-		this.status = status;
-		this.lastPowerConsumption = lastPowerConsumption;
-		this.delFlag = delFlag;
-		this.deductionAmount = deductionAmount;
-		this.diffPowerConsumption = diffPowerConsumption;
 	}
 
 	public Double getDiffPowerConsumption() {
@@ -106,14 +79,6 @@ public class RentalOrder implements Serializable {
 
 	public void setStatus(Integer status) {
 		this.status = status;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Date getCreateDate() {

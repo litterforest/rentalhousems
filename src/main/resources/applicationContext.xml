@@ -11,6 +11,7 @@
 	
 	<import resource="classpath:applicationContext-tx.xml" />
 	<import resource="classpath:applicationContext-mybatis.xml" />
+	<import resource="classpath:applicationContext-shiro.xml" />
 	
 	<context:annotation-config></context:annotation-config>
 
