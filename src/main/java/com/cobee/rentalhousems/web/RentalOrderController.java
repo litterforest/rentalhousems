@@ -25,7 +25,6 @@ public class RentalOrderController extends AbstractController {
 		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrder);
 		model.addAttribute("rentalOrderList", rentalOrderList);
 		return "rentalOrderList";
-		
 	}
 	
 	@GetMapping("/form")
