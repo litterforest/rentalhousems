@@ -1,13 +1,18 @@
 package com.cobee.rentalhousems.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cobee.rentalhousems.entity.RentalOrder;
 import com.cobee.rentalhousems.service.RentalOrderService;
@@ -34,12 +39,37 @@ public class RentalOrderController extends AbstractController {
 		
 	}
 	
+	@GetMapping("/detail/{id}")
+	public String detail(@PathVariable Integer id, @MatrixVariable(required=false, defaultValue="0") Integer q, Model model)
+	{
+		RentalOrder rentalOrder = rentalOrderService.get(id);
+		model.addAttribute("rentalOrder", rentalOrder);
+		model.addAttribute("q", q);
+		return "rentalOrderDetail";
+		
+	}
+	
 	@PostMapping("/save")
 	public String save(RentalOrder rentalOrder)
 	{
 		rentalOrderService.save(rentalOrder);
 		return "redirect:list";
-		
+	}
+	
+	@PostMapping("/audit/{id}")
+	@ResponseBody
+	public Map<String, Object> audit(@PathVariable Integer id)
+	{
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			rentalOrderService.audit(id);
+			resultMap.put("status", "success");
+		} catch (Exception e) {
+			logger.error("", e);
+			resultMap.put("status", "fail");
+			resultMap.put("msg", e.getMessage());
+		}
+		return resultMap;
 	}
 	
 }

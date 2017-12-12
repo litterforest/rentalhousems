@@ -37,14 +37,20 @@
 			<c:when test="${ not empty rentalOrderList }">
 				<c:forEach items="${rentalOrderList }" var="rentalOrder" >
 					<tr>
-						<td></td>
+						<td> 
+							<input type="button" value="查看" onclick="location='${ctx}/rentalorder/detail/${rentalOrder.id}'" >
+							<c:if test="${rentalOrder.status ne 100 }">
+								&nbsp;&nbsp;
+								<input type="button" value="审核" onclick="location='${ctx}/rentalorder/detail/${rentalOrder.id};q=1'" >
+							</c:if>
+						</td>
 						<td>${rentalOrder.year }-${rentalOrder.month }</td>
 						<td>${rentalOrder.rentalTypeDesc }</td>
 						<td>${rentalOrder.rentalAmount }</td>
 						<td>${rentalOrder.electricityAmount }</td>
 						<td>${rentalOrder.deductionAmount }</td>
 						<td>${rentalOrder.totalAmount }</td>
-						<td>${rentalOrder.status }</td>
+						<td>${rentalOrder.statusDesc }</td>
 						<td>${rentalOrder.createDate }</td>
 					</tr>
 				</c:forEach>

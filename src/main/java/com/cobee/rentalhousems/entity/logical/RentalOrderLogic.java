@@ -28,5 +28,25 @@ public class RentalOrderLogic extends RentalOrder {
 			return "";
 		}
 	}
+	
+	public String getStatusDesc()
+	{
+		if (super.getStatus() == null)
+		{
+			return "";
+		}
+		else if (super.getStatus() == 0)
+		{
+			return "未审核";
+		}
+		else if (super.getStatus() == 100)
+		{
+			return "审核通过";
+		}
+		else
+		{
+			return "";
+		}
+	}
 
 }

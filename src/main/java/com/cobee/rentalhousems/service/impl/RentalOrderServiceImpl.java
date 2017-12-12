@@ -54,5 +54,16 @@ public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOr
 		save(rentalOrder);
 		
 	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public void audit(Integer id) {
+		
+		RentalOrder rentalOrder = new RentalOrder();
+		rentalOrder.setId(id);
+		rentalOrder.setStatus(100);
+		this.updateBySelective(rentalOrder);
+		
+	}
 	
 }

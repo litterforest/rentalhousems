@@ -36,9 +36,19 @@ public class RentalOrder extends BaseEntity {
 	private Double deductionAmount;
 	// 电费使用度数
 	private Double diffPowerConsumption;
+	// 用户外键ID
+	private Integer userId;
 
 	public RentalOrder() {
 		super();
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public Double getDiffPowerConsumption() {

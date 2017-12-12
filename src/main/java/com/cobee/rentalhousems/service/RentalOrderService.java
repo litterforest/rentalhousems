@@ -6,4 +6,6 @@ public interface RentalOrderService extends BaseService<RentalOrder> {
 
 	void createRentalOrder(RentalOrder rentalOrder);
 	
+	void audit(Integer id);
+	
 }

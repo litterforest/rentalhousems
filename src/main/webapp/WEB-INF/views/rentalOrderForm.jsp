@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>收费订单列表</title>
+<title>收费订单</title>
 <script type="text/javascript">
 	function rentalType_onchange(thisObj)
 	{

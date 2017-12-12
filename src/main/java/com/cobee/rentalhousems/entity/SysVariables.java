@@ -22,9 +22,19 @@ public class SysVariables extends BaseEntity {
 	private Double standardRentingElectricity;
 	// 铺位每度电的收费标准
 	private Double standardBerthElectricity;
+	// 用户外键ID
+	private Integer userId;
 
 	public SysVariables() {
 		super();
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public Date getCreateDate() {
