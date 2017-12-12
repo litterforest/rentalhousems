@@ -1,6 +1,5 @@
 package com.cobee.rentalhousems.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 public class SysVariables extends BaseEntity {
