@@ -43,6 +43,8 @@
             <value>
                 /login = anon
                 /doLogin = anon
+                /register = anon
+                /doRegister = anon
                 /resources/** = anon
                 /logout = logout
                 /** = authc

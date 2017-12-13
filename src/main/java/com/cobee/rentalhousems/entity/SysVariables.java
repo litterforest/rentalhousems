@@ -9,11 +9,6 @@ public class SysVariables extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 8507953507283481L;
 
-	private Date createDate;
-	private String createBy;
-	private Date updateDate;
-	private String updateBy;
-	private String remarks;
 	// 租房当前电费度数
 	private Double currentRentingPowerConsumption;
 	// 铺位当前电费度数
@@ -35,46 +30,6 @@ public class SysVariables extends BaseEntity {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
 	}
 
 	public Double getCurrentRentingPowerConsumption() {

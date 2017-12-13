@@ -1,5 +1,6 @@
 package com.cobee.rentalhousems.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cobee.rentalhousems.dao.BaseDao;
 import com.cobee.rentalhousems.entity.BaseEntity;
 
+@Transactional(readOnly = true)
 public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>> implements BaseService<T> {
 	
 	protected Logger logger = LoggerFactory.getLogger(getClass());
@@ -27,10 +29,13 @@ public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>
 	public void save(T obj) {
 		if (obj.getId() != null)
 		{
+			obj.setCreateDate(new Date());
+			obj.setUpdateDate(new Date());
 			dao.updateBySelective(obj);
 		}
 		else
 		{
+			obj.setUpdateDate(new Date());
 			dao.insertBySelective(obj);
 		}
 	}

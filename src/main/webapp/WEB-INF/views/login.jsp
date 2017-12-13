@@ -19,7 +19,7 @@
 				<td><input name="password" type="password" ></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="登录" >&nbsp;&nbsp;<input type="button" value="免费注册" ></td>
+				<td colspan="2"><input type="submit" value="登录" >&nbsp;&nbsp;<input type="button" value="免费注册" onclick="location='${ctx}/register'" ></td>
 			</tr>
 		</table>
 	</form>

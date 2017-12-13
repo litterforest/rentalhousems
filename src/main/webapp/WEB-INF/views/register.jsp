@@ -8,7 +8,7 @@
 <%@ include file="include/pageResources.jsp"%>
 </head>
 <body>
-	<form action="${ctx }/doLogin" method="post" >
+	<form action="${ctx }/doRegister" method="post" >
 		<table>
 			<tr>
 				<td>用户名</td>
@@ -19,7 +19,11 @@
 				<td><input name="password" type="password" ></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="登录" >&nbsp;&nbsp;<input type="button" value="免费注册" ></td>
+				<td>手机号码</td>
+				<td><input name="mobile" type="text" ></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="提交" >&nbsp;&nbsp;<input type="button" value="返回" onclick="location='${ctx}/login'" ></td>
 			</tr>
 		</table>
 	</form>

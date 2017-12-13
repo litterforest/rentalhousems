@@ -9,11 +9,6 @@ public class RentalOrder extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 3827501685095969463L;
 
-	private Date createDate;
-	private String createBy;
-	private Date updateDate;
-	private String updateBy;
-	private String remarks;
 	private String year;
 	private String month;
 	// 出租费
@@ -91,45 +86,6 @@ public class RentalOrder extends BaseEntity {
 		this.status = status;
 	}
 
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
 
 	public String getYear() {
 		return year;

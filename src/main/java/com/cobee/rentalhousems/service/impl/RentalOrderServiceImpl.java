@@ -15,7 +15,6 @@ import com.cobee.rentalhousems.service.AbstractService;
 import com.cobee.rentalhousems.service.RentalOrderService;
 
 @Service
-@Transactional(readOnly = true)
 public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOrderDao> implements RentalOrderService {
 	
 	@Autowired
