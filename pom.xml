@@ -252,6 +252,7 @@
 				<version>2.2</version>
 				<configuration>
 					<port>8068</port>
+					<uriEncoding>UTF-8</uriEncoding>
 				</configuration>
 			</plugin>
 
