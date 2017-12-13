@@ -32,7 +32,9 @@
 	</update>
 	
 	<update id="insertBySelective" parameterType="BaseUser">
-		
+		<selectKey order="AFTER" keyProperty="id" resultType="integer" keyColumn="id" >
+			select last_insert_id()
+		</selectKey>
 		insert into base_user
 		(
 			<trim suffixOverrides=",">

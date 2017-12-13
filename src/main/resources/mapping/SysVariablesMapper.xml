@@ -4,7 +4,10 @@
 	
 	<select id="list" resultType="SysVariables" >
 	
-		select * from sys_variables where del_flag = 0
+		select * from sys_variables a where a.del_flag = 0
+		<if test="userId != null">
+			and a.user_Id = #{userId}
+		</if>
 	
 	</select>
 	
@@ -48,6 +51,9 @@
 				<if test="standardBerthElectricity != null">
 					standard_Berth_Electricity,
 				</if>
+				<if test="userId != null">
+					user_Id,
+				</if>
 				
 				
 				
@@ -81,8 +87,9 @@
 				<if test="standardBerthElectricity != null">
 					#{standardBerthElectricity},
 				</if>
-				
-				
+				<if test="userId != null">
+					#{userId},
+				</if>
 				
 			</trim>
 		)

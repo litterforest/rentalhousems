@@ -54,10 +54,12 @@
 			<td>备注</td>
 			<td>${rentalOrder.remarks }</td>
 		</tr>
+		
 		<tr>
+			<td colspan="2" align="center" >
 			<c:if test="${q eq 1 }">
 				<input type="button"
-				value="审核" onclick="" >&nbsp;&nbsp;
+				value="审核" onclick="location='${ctx }/rentalorder/audit/${rentalOrder.id }'" >
 			</c:if>
 			<input type="button"
 				value="返回" onclick="location='${ctx }/rentalorder/list'"></td>

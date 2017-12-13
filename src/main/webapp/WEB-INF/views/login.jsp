@@ -9,6 +9,7 @@
 </head>
 <body>
 	<form action="${ctx }/doLogin" method="post" >
+		<div>${param.errorMsg }</div>
 		<table>
 			<tr>
 				<td>用户名</td>
@@ -19,7 +20,7 @@
 				<td><input name="password" type="password" ></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="登录" >&nbsp;&nbsp;<input type="button" value="免费注册" onclick="location='${ctx}/register'" ></td>
+				<td colspan="2" align="center"><input type="submit" value="登录" >&nbsp;&nbsp;<input type="button" value="免费注册" onclick="location='${ctx}/register'" ></td>
 			</tr>
 		</table>
 	</form>

@@ -41,7 +41,6 @@
 						<td> 
 							<input type="button" value="查看" onclick="location='${ctx}/rentalorder/detail/${rentalOrder.id}'" >
 							<c:if test="${rentalOrder.status ne 100 }">
-								&nbsp;&nbsp;
 								<input type="button" value="审核" onclick="location='${ctx}/rentalorder/detail/${rentalOrder.id};q=1'" >
 							</c:if>
 						</td>
@@ -52,7 +51,7 @@
 						<td>${rentalOrder.deductionAmount }</td>
 						<td>${rentalOrder.totalAmount }</td>
 						<td>${rentalOrder.statusDesc }</td>
-						<td>${rentalOrder.createDate }</td>
+						<td><fmt:formatDate value="${rentalOrder.createDate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 					</tr>
 				</c:forEach>
 			</c:when>

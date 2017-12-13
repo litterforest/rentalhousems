@@ -11,6 +11,7 @@
 	<table>
 		<tr>
 			<td><a href="${ctx }/rentalorder/list">二手房收租管理</a></td>
+			<td><a href="${ctx }/sysVariables/form">租房参数设定</a></td>
 		</tr>
 	</table>
 </body>

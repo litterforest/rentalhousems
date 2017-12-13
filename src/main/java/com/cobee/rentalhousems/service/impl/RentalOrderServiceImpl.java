@@ -1,49 +1,53 @@
 package com.cobee.rentalhousems.service.impl;
 
-import java.util.Date;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cobee.rentalhousems.dao.RentalOrderDao;
-import com.cobee.rentalhousems.dao.SysVariablesDao;
+import com.cobee.rentalhousems.entity.BaseUser;
 import com.cobee.rentalhousems.entity.RentalOrder;
 import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.service.AbstractService;
 import com.cobee.rentalhousems.service.RentalOrderService;
+import com.cobee.rentalhousems.service.SysVariablesService;
 
 @Service
 public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOrderDao> implements RentalOrderService {
 	
 	@Autowired
-	private SysVariablesDao sysVariablesDao;
+	private SysVariablesService sysVariablesService;
 
 	@Override
 	@Transactional(readOnly = false)
 	public void createRentalOrder(RentalOrder rentalOrder) {
 		
-		List<SysVariables> sysVariablesList = sysVariablesDao.list(new SysVariables());
-		SysVariables sysVariables = sysVariablesList.get(0);
-		
-		rentalOrder.setDelFlag(0);
-		rentalOrder.setStatus(0);
-		rentalOrder.setCreateDate(new Date());
-		rentalOrder.setUpdateDate(new Date());
-		
-		Double lastPowerConsumption = rentalOrder.getRentalType() == 0 ? sysVariables.getCurrentRentingPowerConsumption() : rentalOrder.getRentalType() == 1 ? sysVariables.getCurrentBerthPowerConsumption() : 0.0D;
+		BaseUser user = (BaseUser) SecurityUtils.getSubject().getPrincipal();
+		SysVariables sysVariables = new SysVariables();
+		sysVariables.setUserId(user.getId());
+		List<SysVariables> sysVariablesList = sysVariablesService.list(sysVariables);
+		SysVariables dbSysVariables = sysVariablesList.get(0);
+
+		if (rentalOrder.getId() == null)
+		{
+			rentalOrder.setUserId(user.getId());
+		}
+		Double lastPowerConsumption = rentalOrder.getRentalType() == 0 ? dbSysVariables.getCurrentRentingPowerConsumption() : rentalOrder.getRentalType() == 1 ? dbSysVariables.getCurrentBerthPowerConsumption() : 0.0D;
 		rentalOrder.setLastPowerConsumption(lastPowerConsumption);
 		Double diffPowerConsumption = rentalOrder.getPowerConsumption() - lastPowerConsumption;
 		rentalOrder.setDiffPowerConsumption(diffPowerConsumption);
 		Double electricityAmount = 0.0;
 		if (rentalOrder.getRentalType() == 0)
 		{
-			electricityAmount = diffPowerConsumption * sysVariables.getStandardRentingElectricity();
+			electricityAmount = diffPowerConsumption * dbSysVariables.getStandardRentingElectricity();
 		}
 		else if(rentalOrder.getRentalType() == 1)
 		{
-			electricityAmount = diffPowerConsumption * sysVariables.getStandardBerthElectricity();
+			electricityAmount = diffPowerConsumption * dbSysVariables.getStandardBerthElectricity();
 		}
 		rentalOrder.setElectricityAmount(electricityAmount);
 		
@@ -62,6 +66,27 @@ public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOr
 		rentalOrder.setId(id);
 		rentalOrder.setStatus(100);
 		this.updateBySelective(rentalOrder);
+		
+		RentalOrder dbRentalOrder = super.get(id);
+		Double powerConsumption = dbRentalOrder.getPowerConsumption();
+		
+		SysVariables sysVariables = new SysVariables();
+		sysVariables.setUserId(dbRentalOrder.getUserId());
+		List<SysVariables> sysVariablesList = sysVariablesService.list(sysVariables);
+		if (!CollectionUtils.isEmpty(sysVariablesList))
+		{
+			SysVariables newSysVariables = new SysVariables();
+			newSysVariables.setId(sysVariablesList.get(0).getId());
+			if (dbRentalOrder.getRentalType() == 0)
+			{
+				newSysVariables.setCurrentRentingPowerConsumption(powerConsumption);
+			}
+			else if (dbRentalOrder.getRentalType() == 1)
+			{
+				newSysVariables.setCurrentBerthPowerConsumption(powerConsumption);
+			}
+			sysVariablesService.updateBySelective(newSysVariables);
+		}
 		
 	}
 	

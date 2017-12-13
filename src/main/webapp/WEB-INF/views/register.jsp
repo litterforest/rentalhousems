@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form action="${ctx }/doRegister" method="post" >
-		<div>${errorMsg }</div>
+		<div>${param.errorMsg }</div>
 		<table>
 			<tr>
 				<td>用户名</td>
@@ -24,7 +24,7 @@
 				<td><input name="mobile" type="text" ></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="提交" >&nbsp;&nbsp;<input type="button" value="返回" onclick="location='${ctx}/login'" ></td>
+				<td colspan="2" align="center" ><input type="submit" value="提交" >&nbsp;&nbsp;<input type="button" value="返回" onclick="location='${ctx}/login'" ></td>
 			</tr>
 		</table>
 	</form>

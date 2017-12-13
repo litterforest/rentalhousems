@@ -29,12 +29,11 @@ public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>
 	public void save(T obj) {
 		if (obj.getId() != null)
 		{
-			obj.setCreateDate(new Date());
-			obj.setUpdateDate(new Date());
 			dao.updateBySelective(obj);
 		}
 		else
 		{
+			obj.setCreateDate(new Date());
 			obj.setUpdateDate(new Date());
 			dao.insertBySelective(obj);
 		}
@@ -60,6 +59,7 @@ public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>
 	@Override
 	@Transactional(readOnly = false)
 	public Integer updateBySelective(T obj) {
+		obj.setUpdateDate(new Date());
 		return dao.updateBySelective(obj);
 	}
 	

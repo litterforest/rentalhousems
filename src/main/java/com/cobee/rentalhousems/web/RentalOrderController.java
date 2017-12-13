@@ -52,24 +52,17 @@ public class RentalOrderController extends AbstractController {
 	@PostMapping("/save")
 	public String save(RentalOrder rentalOrder)
 	{
-		rentalOrderService.save(rentalOrder);
+		rentalOrderService.createRentalOrder(rentalOrder);
 		return "redirect:list";
 	}
 	
-	@PostMapping("/audit/{id}")
-	@ResponseBody
-	public Map<String, Object> audit(@PathVariable Integer id)
+	@RequestMapping("/audit/{id}")
+	public String audit(@PathVariable Integer id)
 	{
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		try {
-			rentalOrderService.audit(id);
-			resultMap.put("status", "success");
-		} catch (Exception e) {
-			logger.error("", e);
-			resultMap.put("status", "fail");
-			resultMap.put("msg", e.getMessage());
-		}
-		return resultMap;
+		
+		rentalOrderService.audit(id);
+		
+		return "redirect:list";
 	}
 	
 }

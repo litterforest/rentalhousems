@@ -15,7 +15,7 @@
 			and a.rental_Type = #{rentalType}
 		</if>
 		
-		order by a.year desc, a.month desc
+		order by a.create_date desc
 	
 	</select>
 	
@@ -84,6 +84,9 @@
 				<if test="diffPowerConsumption != null">
 					diff_Power_Consumption,
 				</if>
+				<if test="userId != null">
+					user_Id,
+				</if>
 			</trim>
 		) values (
 			<trim suffixOverrides=",">
@@ -134,6 +137,9 @@
 				</if>
 				<if test="diffPowerConsumption != null">
 					#{diffPowerConsumption},
+				</if>
+				<if test="userId != null">
+					#{userId},
 				</if>
 			</trim>
 		)
