@@ -14,8 +14,8 @@
     <bean id="shiroRealm" class="com.cobee.rentalhousems.component.shiro.ShiroRealm" >
     	<property name="credentialsMatcher" >
     		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" >
-    			<property name="hashAlgorithm" value="MD5" ></property>
-    			<property name="hashIterations" value="16" ></property>
+    			<property name="hashAlgorithmName" value="MD5" ></property>
+    			<property name="hashIterations" value="128" ></property>
     		</bean>
     	</property>
     </bean>
@@ -36,6 +36,18 @@
     
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" ></property>
+		<property name="loginUrl" value="/login"/>
+        <property name="successUrl" value="/home"/>
+        <property name="unauthorizedUrl" value="/unauthorized"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /login = anon
+                /doLogin = anon
+                /resources/** = anon
+                /logout = logout
+                /** = authc
+            </value>
+        </property>
 	</bean>
 
 </beans>

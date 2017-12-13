@@ -1,4 +1,3 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
+<%@ include file="include/taglib.jsp"%>
+<div class="header">，普通会员&nbsp;&nbsp;&nbsp;&nbsp;<a href="${ctx }/logout">退出</a></div>
