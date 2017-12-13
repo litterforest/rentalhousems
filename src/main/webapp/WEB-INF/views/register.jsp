@@ -9,6 +9,7 @@
 </head>
 <body>
 	<form action="${ctx }/doRegister" method="post" >
+		<div>${errorMsg }</div>
 		<table>
 			<tr>
 				<td>用户名</td>
