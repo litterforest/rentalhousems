@@ -11,6 +11,15 @@
         <property name="cacheManagerConfigFile" value="classpath:ehcache/ehcache.xml"/>
     </bean>
     
+    <bean id="shiroRealm" class="com.cobee.rentalhousems.component.shiro.ShiroRealm" >
+    	<property name="credentialsMatcher" >
+    		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" >
+    			<property name="hashAlgorithm" value="MD5" ></property>
+    			<property name="hashIterations" value="16" ></property>
+    		</bean>
+    	</property>
+    </bean>
+    
      <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="cacheManager" ref="cacheManager" />
         <property name="realm" ref="shiroRealm" />
