@@ -27,7 +27,7 @@ public class ShiroRealm extends AuthenticatingRealm {
 		String username = upToken.getUsername();
 		
 		// 登录失败次数太多，用户被锁定
-		
+		// TODO
 		
 		// 获取数据库用户信息
 		BaseUser baseUser = new BaseUser();
