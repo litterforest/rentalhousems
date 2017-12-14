@@ -41,8 +41,7 @@ public class ShiroRealm extends AuthenticatingRealm {
 		BaseUser dbBaseUser = baseUserList.get(0);
 		ByteSource salt = ByteSource.Util.bytes(dbBaseUser.getUsername());
 		
-		AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(dbBaseUser, dbBaseUser.getPassword(), salt, getName());
-		return authenticationInfo;
+		return new SimpleAuthenticationInfo(dbBaseUser, dbBaseUser.getPassword(), salt, getName());
 	}
 
 }

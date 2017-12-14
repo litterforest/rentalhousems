@@ -16,6 +16,20 @@ public abstract class BaseEntity implements Serializable {
 	private Date updateDate;
 	private String updateBy;
 	private String remarks;
+	// 0未审核 100审核成功
+	private Integer status;
+
+	public BaseEntity() {
+		super();
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
 	public Integer getId() {
 		return id;
@@ -65,4 +79,24 @@ public abstract class BaseEntity implements Serializable {
 		this.remarks = remarks;
 	}
 
+	public String getStatusDesc()
+	{
+		if (getStatus() == null)
+		{
+			return "";
+		}
+		else if (getStatus() == 0)
+		{
+			return "未审核";
+		}
+		else if (getStatus() == 100)
+		{
+			return "审核通过";
+		}
+		else
+		{
+			return "";
+		}
+	}
+	
 }

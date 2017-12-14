@@ -1,7 +1,5 @@
 package com.cobee.rentalhousems.entity;
 
-import java.util.Date;
-
 public class SysVariables extends BaseEntity {
 
 	/**

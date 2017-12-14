@@ -1,7 +1,5 @@
 package com.cobee.rentalhousems.entity;
 
-import java.util.Date;
-
 public class RentalOrder extends BaseEntity {
 
 	/**
@@ -21,8 +19,6 @@ public class RentalOrder extends BaseEntity {
 	private Double totalAmount;
 	// 出租类型：0房租 1铺租
 	private Integer rentalType;
-	// 0未审核 100审核成功
-	private Integer status;
 	// 上月电费度数
 	private Double lastPowerConsumption;
 	// 删除标记
@@ -77,15 +73,6 @@ public class RentalOrder extends BaseEntity {
 	public void setLastPowerConsumption(Double lastPowerConsumption) {
 		this.lastPowerConsumption = lastPowerConsumption;
 	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
 
 	public String getYear() {
 		return year;
