@@ -89,5 +89,12 @@ public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOr
 		}
 		
 	}
+
+	@Override
+	public boolean isCreatePermission(RentalOrder rentalOrder) {
+		rentalOrder.setStatus(0);
+		Integer count = super.queryByCount(rentalOrder);
+		return count > 0 ? true : false;
+	}
 	
 }

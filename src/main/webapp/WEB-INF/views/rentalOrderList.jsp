@@ -6,19 +6,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>收费订单列表</title>
+<%@ include file="include/pageResources.jsp" %>
+<script type="text/javascript" >
+	
+	function create_onclick()
+	{
+		// 检查是否有订单未审核通过
+		$.ajax({
+		   type: "POST",
+		   url: "${ctx }/rentalorder/isCreatePermission",
+		   data: {rentalType : $("#rentalType").val()},
+		   success: function(data){
+		      if (data.status == "success")
+	    	  {
+		    	  location='${ctx }/rentalorder/form';
+	    	  }
+		      else
+	    	  {
+	    	  	  alert(data.msg);
+	    	  }
+		   }
+		});
+		
+		
+		return false;
+		
+	}
+	
+</script>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
 	<form action="${ctx }/rentalorder/list" method="get" >
 	<p>
-		收租类型:<select name="rentalType" >
+		收租类型:<select id="rentalType" name="rentalType" >
 					<option value="">全部</option>
 					<option value="0">房租</option>
 					<option value="1">铺租</option>
 				</select>
 	</p>
 	<p>
-		<input type="button" value="添加" onclick="location='${ctx }/rentalorder/form'" > <input type="submit" value="查询" >
+		<input type="button" value="添加" onclick="create_onclick();" > <input type="submit" value="查询" >
 	</p>
 	</form>
 	<table border="1">

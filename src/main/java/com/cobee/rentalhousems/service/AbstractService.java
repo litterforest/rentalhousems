@@ -43,6 +43,11 @@ public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>
 	public T get(Integer id) {
 		return dao.get(id);
 	}
+	
+	@Override
+	public Integer queryByCount(T obj){
+		return dao.queryByCount(obj);
+	}
 
 	@Override
 	@Transactional(readOnly = false)

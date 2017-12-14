@@ -17,5 +17,7 @@ public interface BaseService<T extends BaseEntity> {
 	Integer deleteByLogic(Integer id);
 
 	Integer updateBySelective(T obj);
+	
+	Integer queryByCount(T obj);
 
 }

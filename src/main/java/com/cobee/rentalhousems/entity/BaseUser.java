@@ -9,9 +9,28 @@ public class BaseUser extends BaseEntity {
 	private String username;
 	private String password;
 	private String mobile;
+	private String realname;
+
+	private SysVariables sysVariables;
 
 	public BaseUser() {
 		super();
+	}
+
+	public SysVariables getSysVariables() {
+		return sysVariables;
+	}
+
+	public void setSysVariables(SysVariables sysVariables) {
+		this.sysVariables = sysVariables;
+	}
+
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
 	}
 
 	public String getMobile() {
@@ -21,7 +40,6 @@ public class BaseUser extends BaseEntity {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-
 
 	public String getUsername() {
 		return username;

@@ -24,6 +24,10 @@
 				<td><input name="mobile" type="text" ></td>
 			</tr>
 			<tr>
+				<td>真实姓名</td>
+				<td><input name="realname" type="text" ></td>
+			</tr>
+			<tr>
 				<td colspan="2" align="center" ><input type="submit" value="提交" >&nbsp;&nbsp;<input type="button" value="返回" onclick="location='${ctx}/login'" ></td>
 			</tr>
 		</table>

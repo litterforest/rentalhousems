@@ -2,26 +2,73 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cobee.rentalhousems.dao.impl.RentalOrderMapper">
 	
+	<sql id="selectFromClause">
+		a.id,
+		a.create_Date,
+		a.create_By,
+		a.update_Date,
+		a.update_By,
+		a.remarks,
+		a.year,
+		a.month,
+		a.rental_Amount,
+		a.electricity_Amount,
+		a.power_Consumption,
+		a.total_Amount,
+		a.rental_Type,
+		a.status,
+		a.last_Power_Consumption,
+		a.del_Flag,
+		a.deduction_Amount,
+		a.diff_Power_Consumption,
+		a.user_id,
+		b.realname as "baseUser.realname",
+		c.standard_Renting_Electricity as "baseUser.sysVariables.standardRentingElectricity",
+		c.standard_Berth_Electricity as "baseUser.sysVariables.standardBerthElectricity"
+		from rental_order a
+		left join base_user b on b.id = a.user_id
+		left join sys_variables c on c.user_id = b.id
+	</sql>
+	
 	<select id="list" resultType="RentalOrder" >
 	
-		select a.* from rental_order a 
-		where a.del_flag = 0
-		
-		<if test="status != null">
-			and a.status = #{status}
-		</if>
-		
-		<if test="rentalType != null">
-			and a.rental_Type = #{rentalType}
-		</if>
-		
+		select <include refid="selectFromClause" />
+		<where>
+			a.del_flag = 0
+			<if test="status != null">
+				and a.status = #{status}
+			</if>
+			
+			<if test="rentalType != null">
+				and a.rental_Type = #{rentalType}
+			</if>
+		</where>
 		order by a.create_date desc
 	
 	</select>
 	
 	<select id="get" resultType="RentalOrder" parameterType="integer" >
 	
-		select a.* from rental_order a where a.id = #{id}
+		select <include refid="selectFromClause" /> where a.id = #{id}
+		
+	</select>
+	
+	<select id="queryByCount" resultType="integer" >
+	
+		select count(1) from rental_order a
+		<where>
+			<trim prefixOverrides="and" >
+			
+				<if test="status != null">
+					and a.status = #{status}
+				</if>
+				
+				<if test="rentalType != null">
+					and a.rental_Type = #{rentalType}
+				</if>
+				
+			</trim>
+		</where>
 		
 	</select>
 	

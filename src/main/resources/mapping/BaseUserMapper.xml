@@ -62,6 +62,9 @@
 				<if test="mobile != null">
 					mobile,
 				</if>
+				<if test="realname != null">
+					realname,
+				</if>
 				
 			</trim>
 		) values (
@@ -89,6 +92,9 @@
 				</if>
 				<if test="mobile != null">
 					#{mobile},
+				</if>
+				<if test="realname != null">
+					#{realname},
 				</if>
 			</trim>
 		)
@@ -123,6 +129,9 @@
 				</if>
 				<if test="mobile != null">
 					mobile = #{mobile},
+				</if>
+				<if test="realname != null">
+					realname = #{realname},
 				</if>
 			</trim>
 		

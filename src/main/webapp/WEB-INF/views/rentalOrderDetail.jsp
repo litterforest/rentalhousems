@@ -30,9 +30,24 @@
 			<td>当月电度数</td>
 			<td><fmt:formatNumber value="${rentalOrder.powerConsumption }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" ></fmt:formatNumber></td>
 		</tr>
+		
 		<tr>
 			<td>实用电度数</td>
 			<td><fmt:formatNumber value="${rentalOrder.diffPowerConsumption }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" ></fmt:formatNumber></td>
+		</tr>
+		
+		<tr>
+			<td>电费标准(度/元)</td>
+			<td>
+				<c:choose>
+					<c:when test="${rentalOrder.rentalType eq 0 }">
+						<fmt:formatNumber value="${rentalOrder.baseUser.sysVariables.standardRentingElectricity }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" />
+					</c:when>
+					<c:when test="${rentalOrder.rentalType eq 1 }">
+						<fmt:formatNumber value="${rentalOrder.baseUser.sysVariables.standardBerthElectricity }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" />
+					</c:when>
+				</c:choose>
+			</td>
 		</tr>
 		
 		<tr>
@@ -48,6 +63,11 @@
 		<tr>
 			<td>总费用</td> 
 			<td><fmt:formatNumber value="${rentalOrder.totalAmount }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" ></fmt:formatNumber></td>
+		</tr>
+		
+		<tr>
+			<td>收租人</td> 
+			<td>${rentalOrder.baseUser.realname }</td>
 		</tr>
 		
 		<tr>
