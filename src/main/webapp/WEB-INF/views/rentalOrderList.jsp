@@ -44,6 +44,7 @@
 					<option value="0">房租</option>
 					<option value="1">铺租</option>
 				</select>
+		年份:<input name="year" type="text" >
 	</p>
 	<p>
 		<input type="button" value="添加" onclick="create_onclick();" > <input type="submit" value="查询" >

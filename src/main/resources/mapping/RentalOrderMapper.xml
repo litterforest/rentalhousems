@@ -42,8 +42,12 @@
 			<if test="rentalType != null">
 				and a.rental_Type = #{rentalType}
 			</if>
+			
+			<if test="year != null">
+				and a.year = #{year}
+			</if>
 		</where>
-		order by a.create_date desc
+		order by a.year desc, a.month desc
 	
 	</select>
 	

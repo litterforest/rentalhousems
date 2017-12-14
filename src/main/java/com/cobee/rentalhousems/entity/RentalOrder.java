@@ -7,8 +7,8 @@ public class RentalOrder extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 3827501685095969463L;
 
-	private String year;
-	private String month;
+	private Integer year;
+	private Integer month;
 	// 出租费
 	private Double rentalAmount;
 	// 电费
@@ -84,19 +84,19 @@ public class RentalOrder extends BaseEntity {
 		this.lastPowerConsumption = lastPowerConsumption;
 	}
 
-	public String getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
-	public String getMonth() {
+	public Integer getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(Integer month) {
 		this.month = month;
 	}
 

@@ -71,6 +71,11 @@
 		</tr>
 		
 		<tr>
+			<td>审核状态</td> 
+			<td>${rentalOrder.statusDesc }</td>
+		</tr>
+		
+		<tr>
 			<td>备注</td>
 			<td>${rentalOrder.remarks }</td>
 		</tr>
