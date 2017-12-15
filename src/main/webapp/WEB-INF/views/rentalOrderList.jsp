@@ -11,7 +11,7 @@
 	
 	$(document).ready(function() {
 		
-		
+		$("#rentalType").val("${rentalOrder.rentalType}");
 		
 	});
 	
@@ -53,7 +53,7 @@
 		年份:<input name="year" type="text" value="${rentalOrder.year }" >
 	</p>
 	<p>
-		<input type="button" value="添加" onclick="create_onclick();" > <input type="submit" value="查询" >
+		<input type="button" value="添加" onclick="create_onclick();" > <input type="reset" value="重置" > <input type="submit" value="查询" >
 	</p>
 	</form>
 	<table border="1">

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class RentalOrderController extends AbstractController {
 	private RentalOrderService rentalOrderService;
 	
 	@GetMapping("/list")
-	public String list(RentalOrder rentalOrder, Model model)
+	public String list(@ModelAttribute("rentalOrder") RentalOrder rentalOrder, Model model)
 	{
 		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrder);
 		model.addAttribute("rentalOrderList", rentalOrderList);
