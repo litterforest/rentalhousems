@@ -25,7 +25,7 @@ public class SysVariablesController extends AbstractController {
 	@GetMapping(value = "/form")
 	public String form(Model model)
 	{
-		BaseUser user = (BaseUser) SecurityUtils.getSubject().getPrincipal();
+		BaseUser user = super.getLoginUser();
 		SysVariables sysVariables = new SysVariables();
 		sysVariables.setUserId(user.getId());
 		List<SysVariables> sysVariablesList = sysVariablesService.list(sysVariables);
@@ -33,7 +33,6 @@ public class SysVariablesController extends AbstractController {
 		{
 			model.addAttribute("sysVariables", sysVariablesList.get(0));
 		}
-		
 		return "sysVariablesForm";
 	}
 	
