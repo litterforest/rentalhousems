@@ -9,6 +9,12 @@
 <%@ include file="include/pageResources.jsp" %>
 <script type="text/javascript" >
 	
+	$(document).ready(function() {
+		
+		
+		
+	});
+	
 	function create_onclick()
 	{
 		// 检查是否有订单未审核通过
@@ -44,7 +50,7 @@
 					<option value="0">房租</option>
 					<option value="1">铺租</option>
 				</select>
-		年份:<input name="year" type="text" >
+		年份:<input name="year" type="text" value="${rentalOrder.year }" >
 	</p>
 	<p>
 		<input type="button" value="添加" onclick="create_onclick();" > <input type="submit" value="查询" >

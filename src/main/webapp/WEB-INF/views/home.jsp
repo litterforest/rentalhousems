@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>出租房管理系统</title>
+<%@ include file="include/pageResources.jsp" %>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>

@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>收费订单</title>
+<%@ include file="include/pageResources.jsp" %>
 <script type="text/javascript">
 	function rentalType_onchange(thisObj)
 	{

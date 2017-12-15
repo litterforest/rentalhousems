@@ -14,9 +14,6 @@
 			<properties>
 				<profile.env>dev</profile.env>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 
 		<profile>
@@ -31,6 +28,9 @@
 			<properties>
 				<profile.env>prod</profile.env>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 
 	</profiles>
@@ -225,7 +225,7 @@
 
 	<build>
 
-		<finalName>rentalhousems</finalName>
+		<finalName>ROOT</finalName>
 
 		<resources>
 			<resource>
