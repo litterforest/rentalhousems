@@ -1,8 +1,5 @@
 package com.cobee.rentalhousems.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -37,7 +34,7 @@ public class SecurityController extends AbstractController {
             UsernamePasswordToken token = new UsernamePasswordToken(baseUser.getUsername(), baseUser.getPassword());
             try
             {
-            	// 登录成功后，创建一个新的会话。安全加固
+            	// 登录时，创建一个新的会话。安全加固
                 if (currentUser.getSession() != null)
                 {
                 	currentUser.getSession().stop();
