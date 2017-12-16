@@ -9,7 +9,8 @@
 </head>
 <body>
 	<form action="${ctx }/doLogin" method="post" >
-		<div>${param.errorMsg }</div>
+		<div class="success" >${param.msg }</div>
+		<div class="error" >${param.errorMsg }</div>
 		<table>
 			<tr>
 				<td>用户名</td>

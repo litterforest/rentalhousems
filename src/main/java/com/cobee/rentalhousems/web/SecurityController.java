@@ -1,6 +1,7 @@
 package com.cobee.rentalhousems.web;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,12 @@ public class SecurityController extends AbstractController {
                 }
                 currentUser.login(token);
             }
+            catch (IncorrectCredentialsException e)
+            {
+            	logger.error("", e);
+            	responsePage = "redirect:/login";
+            	redirectAttributes.addAttribute("errorMsg", "用户名或密码错误");
+            }
             catch (Exception e)
             {
             	logger.error("", e);
@@ -66,6 +73,7 @@ public class SecurityController extends AbstractController {
 		try
 		{
 			baseUserService.register(baseUser);
+			redirectAttributes.addAttribute("msg", "注册成功，请登录使用");
 		}
 		catch(Exception e)
 		{
