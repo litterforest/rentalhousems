@@ -21,6 +21,10 @@
 				<td><input name="password" type="password" ></td>
 			</tr>
 			<tr>
+				<td>记住一周</td>
+				<td><input name="isRememberMe" type="checkbox" value="1" ></td>
+			</tr>
+			<tr>
 				<td colspan="2" align="center"><input type="submit" value="登录" >&nbsp;&nbsp;<input type="button" value="免费注册" onclick="location='${ctx}/register'" ></td>
 			</tr>
 		</table>

@@ -10,11 +10,20 @@ public class BaseUser extends BaseEntity {
 	private String password;
 	private String mobile;
 	private String realname;
+	private Integer isRememberMe;
 
 	private SysVariables sysVariables;
 
 	public BaseUser() {
 		super();
+	}
+
+	public Integer getIsRememberMe() {
+		return isRememberMe;
+	}
+
+	public void setIsRememberMe(Integer isRememberMe) {
+		this.isRememberMe = isRememberMe;
 	}
 
 	public SysVariables getSysVariables() {

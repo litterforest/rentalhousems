@@ -33,6 +33,10 @@ public class SecurityController extends AbstractController {
 		if (!currentUser.isAuthenticated()) {
 			
             UsernamePasswordToken token = new UsernamePasswordToken(baseUser.getUsername(), baseUser.getPassword());
+            if (baseUser.getIsRememberMe() != null && baseUser.getIsRememberMe() == 1)
+            {
+            	token.setRememberMe(true);
+            }
             try
             {
             	// 登录时，创建一个新的会话。安全加固
@@ -41,6 +45,9 @@ public class SecurityController extends AbstractController {
                 	currentUser.getSession().stop();
                 }
                 currentUser.login(token);
+                
+                
+                
             }
             catch (IncorrectCredentialsException e)
             {
