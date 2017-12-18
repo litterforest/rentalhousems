@@ -15,6 +15,7 @@ import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.service.AbstractService;
 import com.cobee.rentalhousems.service.RentalOrderService;
 import com.cobee.rentalhousems.service.SysVariablesService;
+import com.cobee.rentalhousems.util.NumericUtils;
 
 @Service
 public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOrderDao> implements RentalOrderService {
@@ -41,11 +42,11 @@ public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOr
 		Double diffPowerConsumption = rentalOrder.getPowerConsumption() - lastPowerConsumption;
 		rentalOrder.setDiffPowerConsumption(diffPowerConsumption);
 		Double electricityAmount = 0.0;
-		if (rentalOrder.getRentalType() == 0)
+		if (NumericUtils.equal(rentalOrder.getRentalType(), 0))
 		{
 			electricityAmount = diffPowerConsumption * dbSysVariables.getStandardRentingElectricity();
 		}
-		else if(rentalOrder.getRentalType() == 1)
+		else if(NumericUtils.equal(rentalOrder.getRentalType(), 1))
 		{
 			electricityAmount = diffPowerConsumption * dbSysVariables.getStandardBerthElectricity();
 		}

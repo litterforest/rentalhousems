@@ -11,9 +11,9 @@ import java.math.BigDecimal;
  * @date 2016年12月24日
  *
  */
-public class MyNumberUtils {
+public class NumericUtils {
 
-	private MyNumberUtils()
+	private NumericUtils()
 	{
 		throw new IllegalStateException("工具类，不需要创建");
 	}
