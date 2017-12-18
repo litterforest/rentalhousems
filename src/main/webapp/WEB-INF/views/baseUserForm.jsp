@@ -12,6 +12,7 @@
 	<%@ include file="include/header.jsp" %>
 	<form action="${ctx }/BaseUser/save" method="post" >
 		<input name="id" type="hidden" value="${user.id }" >
+		<input name="username" type="hidden" value="${user.username }" >
 		<table border="1">
 			<tr>
 				<td>用户名</td>

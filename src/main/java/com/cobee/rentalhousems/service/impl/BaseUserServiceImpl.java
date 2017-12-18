@@ -2,6 +2,7 @@ package com.cobee.rentalhousems.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.util.CollectionUtils;
@@ -46,6 +47,22 @@ public class BaseUserServiceImpl extends AbstractService<BaseUser, BaseUserDao> 
 			newSysVariables.setStandardRentingElectricity(0.0D);
 			sysVariablesService.save(newSysVariables);
 		}
+		
+	}
+	
+	@Transactional(readOnly = false)
+	@Override
+	public void save(BaseUser baseUser) {
+		
+		String password = baseUser.getPassword();
+		if (StringUtils.isNotBlank(password))
+		{
+			ByteSource salt = ByteSource.Util.bytes(baseUser.getUsername());
+			SimpleHash simpleHash = new SimpleHash("MD5", password, salt, 128);
+			baseUser.setPassword(simpleHash.toString());
+		}
+		
+		super.save(baseUser);
 		
 	}
 

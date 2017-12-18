@@ -9,6 +9,8 @@
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
+	<div class="success" >${param.msg }</div>
+	<div class="error" >${param.errorMsg }</div>
 	<table>
 		<tr>
 			<td><a href="${ctx }/rentalorder/list">二手房收租管理</a></td>
