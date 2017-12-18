@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cobee.rentalhousems.entity.BaseUser;
 import com.cobee.rentalhousems.service.BaseUserService;
+import com.cobee.rentalhousems.util.MyNumberUtils;
 
 @Controller
 public class SecurityController extends AbstractController {
@@ -33,7 +34,7 @@ public class SecurityController extends AbstractController {
 		if (!currentUser.isAuthenticated()) {
 			
             UsernamePasswordToken token = new UsernamePasswordToken(baseUser.getUsername(), baseUser.getPassword());
-            if (baseUser.getIsRememberMe() != null && baseUser.getIsRememberMe() == 1)
+            if (MyNumberUtils.equal(baseUser.getIsRememberMe(), 1))
             {
             	token.setRememberMe(true);
             }
