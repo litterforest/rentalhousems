@@ -47,9 +47,10 @@
                 /doLogin = anon
                 /register = anon
                 /doRegister = anon
-                /rentalorder/list = user
                 /resources/** = anon
                 /logout = logout
+                /home = user
+                /BaseUser/form/** = user
                 /** = authc
             </value>
         </property>
