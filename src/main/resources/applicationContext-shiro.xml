@@ -50,7 +50,7 @@
                 /resources/** = anon
                 /logout = logout
                 /home = user
-                /BaseUser/form/** = user
+                /SecureUser/form/** = user
                 /** = authc
             </value>
         </property>

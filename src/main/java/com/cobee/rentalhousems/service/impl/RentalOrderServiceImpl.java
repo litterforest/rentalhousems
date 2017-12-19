@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cobee.rentalhousems.dao.RentalOrderDao;
-import com.cobee.rentalhousems.entity.BaseUser;
+import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.RentalOrder;
 import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.service.AbstractService;
@@ -27,7 +27,7 @@ public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOr
 	@Transactional(readOnly = false)
 	public void createRentalOrder(RentalOrder rentalOrder) {
 		
-		BaseUser user = (BaseUser) SecurityUtils.getSubject().getPrincipal();
+		SecureUser user = (SecureUser) SecurityUtils.getSubject().getPrincipal();
 		SysVariables sysVariables = new SysVariables();
 		sysVariables.setUserId(user.getId());
 		List<SysVariables> sysVariablesList = sysVariablesService.list(sysVariables);

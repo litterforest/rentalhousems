@@ -23,10 +23,10 @@
 		a.diff_Power_Consumption,
 		a.user_id,
 		b.realname as "baseUser.realname",
-		c.standard_Renting_Electricity as "baseUser.sysVariables.standardRentingElectricity",
-		c.standard_Berth_Electricity as "baseUser.sysVariables.standardBerthElectricity"
+		c.standard_Renting_Electricity as "secureUser.sysVariables.standardRentingElectricity",
+		c.standard_Berth_Electricity as "secureUser.sysVariables.standardBerthElectricity"
 		from rental_order a
-		left join base_user b on b.id = a.user_id
+		left join secure_user b on b.id = a.user_id
 		left join sys_variables c on c.user_id = b.id
 	</sql>
 	

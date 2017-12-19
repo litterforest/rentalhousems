@@ -1,6 +1,6 @@
 package com.cobee.rentalhousems.entity;
 
-public class BaseUser extends BaseEntity {
+public class SecureUser extends BaseEntity {
 
 	/**
 	 * 
@@ -14,7 +14,7 @@ public class BaseUser extends BaseEntity {
 
 	private SysVariables sysVariables;
 
-	public BaseUser() {
+	public SecureUser() {
 		super();
 	}
 

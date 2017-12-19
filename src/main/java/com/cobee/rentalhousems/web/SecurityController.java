@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cobee.rentalhousems.entity.BaseUser;
-import com.cobee.rentalhousems.service.BaseUserService;
+import com.cobee.rentalhousems.entity.SecureUser;
+import com.cobee.rentalhousems.service.SecureUserService;
 import com.cobee.rentalhousems.util.NumericUtils;
 
 @Controller
 public class SecurityController extends AbstractController {
 	
 	@Autowired
-	private BaseUserService baseUserService;
+	private SecureUserService baseUserService;
 	
 	@GetMapping(value="/login")
 	public String login()
@@ -27,7 +27,7 @@ public class SecurityController extends AbstractController {
 	}
 	
 	@PostMapping(value="/doLogin")
-	public String doLogin(BaseUser baseUser, RedirectAttributes redirectAttributes)
+	public String doLogin(SecureUser baseUser, RedirectAttributes redirectAttributes)
 	{
 		Subject currentUser = SecurityUtils.getSubject();
 		String responsePage = "redirect:/home";
@@ -74,7 +74,7 @@ public class SecurityController extends AbstractController {
 	}
 	
 	@PostMapping(value="/doRegister")
-	public String doRegister(BaseUser baseUser, RedirectAttributes redirectAttributes)
+	public String doRegister(SecureUser baseUser, RedirectAttributes redirectAttributes)
 	{
 		
 		String resultPage = "redirect:/login";

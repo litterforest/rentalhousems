@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cobee.rentalhousems.component.redis.JedisBean;
-import com.cobee.rentalhousems.entity.BaseUser;
+import com.cobee.rentalhousems.entity.SecureUser;
 
 public abstract class AbstractController {
 	
@@ -23,9 +23,9 @@ public abstract class AbstractController {
 	 *
 	 * @return
 	 */
-	protected BaseUser getLoginUser()
+	protected SecureUser getLoginUser()
 	{
-		 return (BaseUser) SecurityUtils.getSubject().getPrincipal();
+		 return (SecureUser) SecurityUtils.getSubject().getPrincipal();
 	}
 	
 }

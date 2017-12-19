@@ -2,9 +2,9 @@ package com.cobee.rentalhousems.dao.impl;
 
 import org.mybatis.spring.annotation.MapperScan;
 
-import com.cobee.rentalhousems.dao.BaseUserDao;
+import com.cobee.rentalhousems.dao.SecureUserDao;
 
 @MapperScan
-public interface BaseUserMapper extends BaseUserDao {
+public interface SecureUserMapper extends SecureUserDao {
 
 }

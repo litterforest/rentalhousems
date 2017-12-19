@@ -10,22 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cobee.rentalhousems.dao.BaseUserDao;
-import com.cobee.rentalhousems.entity.BaseUser;
+import com.cobee.rentalhousems.dao.SecureUserDao;
+import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.service.AbstractService;
-import com.cobee.rentalhousems.service.BaseUserService;
+import com.cobee.rentalhousems.service.SecureUserService;
 import com.cobee.rentalhousems.service.SysVariablesService;
 
 @Service
-public class BaseUserServiceImpl extends AbstractService<BaseUser, BaseUserDao> implements BaseUserService {
+public class SecureUserServiceImpl extends AbstractService<SecureUser, SecureUserDao> implements SecureUserService {
 
 	@Autowired
 	private SysVariablesService sysVariablesService;
 	
 	@Override
 	@Transactional(readOnly = false)
-	public void register(BaseUser baseUser) {
+	public void register(SecureUser baseUser) {
 		
 		String password = baseUser.getPassword();
 		ByteSource salt = ByteSource.Util.bytes(baseUser.getUsername());
@@ -52,7 +52,7 @@ public class BaseUserServiceImpl extends AbstractService<BaseUser, BaseUserDao> 
 	
 	@Transactional(readOnly = false)
 	@Override
-	public void save(BaseUser baseUser) {
+	public void save(SecureUser baseUser) {
 		
 		String password = baseUser.getPassword();
 		if (StringUtils.isNotBlank(password))

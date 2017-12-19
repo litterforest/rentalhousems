@@ -42,10 +42,10 @@
 			<td>
 				<c:choose>
 					<c:when test="${rentalOrder.rentalType eq 0 }">
-						<fmt:formatNumber value="${rentalOrder.baseUser.sysVariables.standardRentingElectricity }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" />
+						<fmt:formatNumber value="${rentalOrder.secureUser.sysVariables.standardRentingElectricity }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" />
 					</c:when>
 					<c:when test="${rentalOrder.rentalType eq 1 }">
-						<fmt:formatNumber value="${rentalOrder.baseUser.sysVariables.standardBerthElectricity }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" />
+						<fmt:formatNumber value="${rentalOrder.secureUser.sysVariables.standardBerthElectricity }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" />
 					</c:when>
 				</c:choose>
 			</td>
@@ -68,7 +68,7 @@
 		
 		<tr>
 			<td>收租人</td> 
-			<td>${rentalOrder.baseUser.realname }</td>
+			<td>${rentalOrder.secureUser.realname }</td>
 		</tr>
 		
 		<tr>

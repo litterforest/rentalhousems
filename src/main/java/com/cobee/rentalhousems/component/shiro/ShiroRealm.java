@@ -7,18 +7,20 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.realm.AuthenticatingRealm;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cobee.rentalhousems.entity.BaseUser;
-import com.cobee.rentalhousems.service.BaseUserService;
+import com.cobee.rentalhousems.entity.SecureUser;
+import com.cobee.rentalhousems.service.SecureUserService;
 
-public class ShiroRealm extends AuthenticatingRealm {
+public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
-	private BaseUserService baseUserService;
+	private SecureUserService baseUserService;
 	
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
@@ -30,18 +32,25 @@ public class ShiroRealm extends AuthenticatingRealm {
 		// TODO
 		
 		// 获取数据库用户信息
-		BaseUser baseUser = new BaseUser();
+		SecureUser baseUser = new SecureUser();
 		baseUser.setUsername(username);
-		List<BaseUser> baseUserList = baseUserService.list(baseUser);
+		List<SecureUser> baseUserList = baseUserService.list(baseUser);
 		if (CollectionUtils.isEmpty(baseUserList))
 		{
 			throw new AuthenticationException("用户名或密码错误");
 		}
 		
-		BaseUser dbBaseUser = baseUserList.get(0);
+		SecureUser dbBaseUser = baseUserList.get(0);
 		ByteSource salt = ByteSource.Util.bytes(dbBaseUser.getUsername());
 		
 		return new SimpleAuthenticationInfo(dbBaseUser, dbBaseUser.getPassword(), salt, getName());
+	}
+
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
+		
+		
+		return null;
 	}
 
 }

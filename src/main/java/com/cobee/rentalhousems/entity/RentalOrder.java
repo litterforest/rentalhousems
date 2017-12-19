@@ -30,18 +30,18 @@ public class RentalOrder extends BaseEntity {
 	// 用户外键ID
 	private Integer userId;
 
-	private BaseUser baseUser;
+	private SecureUser secureUser;
 
 	public RentalOrder() {
 		super();
 	}
 
-	public BaseUser getBaseUser() {
-		return baseUser;
+	public SecureUser getSecureUser() {
+		return secureUser;
 	}
 
-	public void setBaseUser(BaseUser baseUser) {
-		this.baseUser = baseUser;
+	public void setSecureUser(SecureUser secureUser) {
+		this.secureUser = secureUser;
 	}
 
 	public Integer getUserId() {

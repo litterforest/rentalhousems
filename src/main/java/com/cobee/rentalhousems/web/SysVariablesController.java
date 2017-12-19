@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cobee.rentalhousems.entity.BaseUser;
+import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.service.SysVariablesService;
 
@@ -25,7 +25,7 @@ public class SysVariablesController extends AbstractController {
 	@GetMapping(value = "/form")
 	public String form(Model model)
 	{
-		BaseUser user = super.getLoginUser();
+		SecureUser user = super.getLoginUser();
 		SysVariables sysVariables = new SysVariables();
 		sysVariables.setUserId(user.getId());
 		List<SysVariables> sysVariablesList = sysVariablesService.list(sysVariables);

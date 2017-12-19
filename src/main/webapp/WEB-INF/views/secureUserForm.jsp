@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>收费订单</title>
+<title>个人信息</title>
 <%@ include file="include/pageResources.jsp" %>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
-	<form action="${ctx }/BaseUser/save" method="post" >
+	<form action="${ctx }/SecureUser/save" method="post" >
 		<input name="id" type="hidden" value="${user.id }" >
 		<input name="username" type="hidden" value="${user.username }" >
 		<table border="1">

@@ -7,26 +7,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cobee.rentalhousems.entity.BaseUser;
-import com.cobee.rentalhousems.service.BaseUserService;
+import com.cobee.rentalhousems.entity.SecureUser;
+import com.cobee.rentalhousems.service.SecureUserService;
 
 @Controller
-@RequestMapping("/BaseUser")
-public class BaseUserController extends AbstractController {
+@RequestMapping("/SecureUser")
+public class SecureUserController extends AbstractController {
 	
 	@Autowired
-	private BaseUserService baseUserService;
+	private SecureUserService baseUserService;
 	
 	@RequestMapping("/form/{id}")
 	public String form(@PathVariable Integer id, Model model)
 	{
-		BaseUser user = baseUserService.get(id);
+		SecureUser user = baseUserService.get(id);
 		model.addAttribute("user", user);
-		return "baseUserForm";
+		return "secureUserForm";
 	}
 	
 	@RequestMapping("/save")
-	public String form(BaseUser baseUser, RedirectAttributes redirectAttributes)
+	public String form(SecureUser baseUser, RedirectAttributes redirectAttributes)
 	{
 		try {
 			
