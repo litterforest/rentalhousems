@@ -13,8 +13,27 @@ public class SecureResources extends BaseEntity {
 	private String srcurl;
 	private String permission;
 
+	private SecureRole secureRole;
+	private SecureUser secureUser;
+
 	public SecureResources() {
 		super();
+	}
+
+	public SecureUser getSecureUser() {
+		return secureUser;
+	}
+
+	public void setSecureUser(SecureUser secureUser) {
+		this.secureUser = secureUser;
+	}
+
+	public SecureRole getSecureRole() {
+		return secureRole;
+	}
+
+	public void setSecureRole(SecureRole secureRole) {
+		this.secureRole = secureRole;
 	}
 
 	public Integer getParentId() {

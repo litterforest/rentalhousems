@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cobee.rentalhousems.dao.impl.SecureResourcesMapper">
+	
+	<select id="list" resultType="SecureResources" >
+	
+		select a.* from secure_resources a
+		where a.del_flag = 0
+	
+	</select>
+	
+	<select id="get" resultType="SecureResources" parameterType="integer" >
+	
+		select a.* from secure_resources a where a.id = #{id}
+		
+	</select>
+	
+	<select id="findRolePermissions" resultType="SecureResources" parameterType="SecureResources" >
+		select 
+			a.id,
+			a.create_Date,
+			a.create_By,
+			a.update_Date,
+			a.update_By,
+			a.remarks,
+			a.del_flag,
+			a.name,
+			a.sort,
+			a.srcurl,
+			a.permission,
+			a.parent_id
+		from secure_resources a 
+		left join secure_role_resources b on b.resources_id = a.id
+		<where>
+			<trim prefixOverrides="and" >
+				<if test="secureRole != null and secureRole.id != null">
+					and b.role_id = #{secureRole.id}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<select id="findUserPermissions" resultType="SecureResources" parameterType="SecureResources" >
+		select 
+			a.id,
+			a.create_Date,
+			a.create_By,
+			a.update_Date,
+			a.update_By,
+			a.remarks,
+			a.del_flag,
+			a.name,
+			a.sort,
+			a.srcurl,
+			a.permission,
+			a.parent_id
+		from secure_resources a 
+		left join secure_user_resources b on b.resources_id = a.id
+		<where>
+			<trim prefixOverrides="and" >
+				<if test="secureUser != null and secureUser != null">
+					and b.user_id = #{secureUser.id}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<update id="delete" parameterType="integer" >
+	
+		delete from secure_resources where id = #{id}
+		
+	</update>
+	
+	<update id="deleteByLogic" parameterType="integer" >
+	
+		update secure_resources set del_flag = 1 where id = #{id} 
+		
+	</update>
+	
+	<update id="insertBySelective" parameterType="SecureResources">
+		<selectKey order="AFTER" keyProperty="id" resultType="integer" keyColumn="id" >
+			select last_insert_id()
+		</selectKey>
+		insert into secure_resources
+		(
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					create_date,
+				</if>
+				<if test="createBy != null">
+					create_by,
+				</if>
+				<if test="updateDate != null">
+					update_date,
+				</if>
+				<if test="updateBy != null">
+					update_by,
+				</if>
+				<if test="remarks != null">
+					remarks,
+				</if>
+				<if test="parentId != null">
+					parent_id,
+				</if>
+				<if test="name != null">
+					name,
+				</if>
+				<if test="sort != null">
+					sort,
+				</if>
+				<if test="srcurl != null">
+					srcurl,
+				</if>
+				<if test="permission != null">
+					permission,
+				</if>
+				
+			</trim>
+		) values (
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					#{createDate},
+				</if>
+				<if test="createBy != null">
+					#{createBy},
+				</if>
+				<if test="updateDate != null">
+					#{updateDate},
+				</if>
+				<if test="updateBy != null">
+					#{updateBy},
+				</if>
+				<if test="remarks != null">
+					#{remarks},
+				</if>
+				<if test="parentId != null">
+					#{parentId},
+				</if>
+				<if test="name != null">
+					#{name},
+				</if>
+				<if test="sort != null">
+					#{sort},
+				</if>
+				<if test="srcurl != null">
+					#{srcurl},
+				</if>
+				<if test="permission != null">
+					#{permission},
+				</if>
+				
+			</trim>
+		)
+	
+	</update>
+	
+	<update id="updateBySelective" parameterType="SecureResources">
+		
+		update secure_resources set 
+		
+		<trim suffixOverrides=",">
+				<if test="createDate != null">
+					create_date = #{createDate},
+				</if>
+				<if test="createBy != null">
+					create_by = #{createBy},
+				</if>
+				<if test="updateDate != null">
+					update_date = #{updateDate},
+				</if>
+				<if test="updateBy != null">
+					update_by = #{updateBy},
+				</if>
+				<if test="remarks != null">
+					remarks = #{remarks},
+				</if>
+				
+				<if test="name != null">
+					name = #{name},
+				</if>
+				<if test="sort != null">
+					sort = #{sort},
+				</if>
+				<if test="srcurl != null">
+					srcurl = #{srcurl},
+				</if>
+				<if test="permission != null">
+					permission = #{permission},
+				</if>
+				
+			</trim>
+		
+		where id = #{id}
+	
+	</update>
+	
+	
+</mapper>

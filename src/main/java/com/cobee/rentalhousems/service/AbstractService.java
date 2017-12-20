@@ -17,7 +17,7 @@ public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-	private E dao;
+	protected E dao;
 	
 	public List<T> list(T obj)
 	{

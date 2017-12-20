@@ -11,6 +11,8 @@
 		<typeAlias type="com.cobee.rentalhousems.entity.logical.RentalOrderLogic" alias="RentalOrder" />
 		<typeAlias type="com.cobee.rentalhousems.entity.SysVariables" alias="SysVariables" />
 		<typeAlias type="com.cobee.rentalhousems.entity.SecureUser" alias="SecureUser" />
+		<typeAlias type="com.cobee.rentalhousems.entity.SecureRole" alias="SecureRole" />
+		<typeAlias type="com.cobee.rentalhousems.entity.SecureResources" alias="SecureResources" />
 		
 	</typeAliases>
 </configuration>

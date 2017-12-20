@@ -23,7 +23,16 @@ public class SecureRole extends BaseEntity {
 	// 角色中文名字
 	private String name;
 
+	private SecureUser secureUser;
 	private Set<SecureResources> resources;
+
+	public SecureUser getSecureUser() {
+		return secureUser;
+	}
+
+	public void setSecureUser(SecureUser secureUser) {
+		this.secureUser = secureUser;
+	}
 
 	public Set<SecureResources> getResources() {
 		return resources;

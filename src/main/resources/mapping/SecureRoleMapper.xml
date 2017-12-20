@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cobee.rentalhousems.dao.impl.SecureRoleMapper">
+	
+	<select id="list" resultType="SecureRole" >
+	
+		select a.* from secure_role a
+		where a.del_flag = 0
+	
+	</select>
+	
+	<select id="get" resultType="SecureRole" parameterType="integer" >
+	
+		select a.* from secure_role a where a.id = #{id}
+		
+	</select>
+	
+	
+	<select id="findUserRoles" resultType="SecureRole" parameterType="SecureRole" >
+		select 
+			a.id,
+			a.enname,
+			a.name,
+			a.create_Date,
+			a.create_By,
+			a.update_Date,
+			a.update_By,
+			a.remarks,
+			a.del_flag
+		from secure_role a 
+		left join secure_user_role b on b.role_id = a.id
+		
+		<where>
+			<trim prefixOverrides="and" >
+				<if test="secureUser != null and secureUser.id != null">
+					and b.user_id = #{secureUser.id}
+				</if>
+			</trim>
+		</where>
+		
+	</select>
+	
+	
+	
+	<update id="delete" parameterType="integer" >
+	
+		delete from secure_role where id = #{id}
+		
+	</update>
+	
+	<update id="deleteByLogic" parameterType="integer" >
+	
+		update secure_role set del_flag = 1 where id = #{id} 
+		
+	</update>
+	
+	<update id="insertBySelective" parameterType="SecureRole">
+		<selectKey order="AFTER" keyProperty="id" resultType="integer" keyColumn="id" >
+			select last_insert_id()
+		</selectKey>
+		insert into secure_role
+		(
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					create_date,
+				</if>
+				<if test="createBy != null">
+					create_by,
+				</if>
+				<if test="updateDate != null">
+					update_date,
+				</if>
+				<if test="updateBy != null">
+					update_by,
+				</if>
+				<if test="remarks != null">
+					remarks,
+				</if>
+				<if test="enname != null">
+					enname,
+				</if>
+				<if test="name != null">
+					name,
+				</if>
+				
+				
+			</trim>
+		) values (
+			<trim suffixOverrides=",">
+				<if test="createDate != null">
+					#{createDate},
+				</if>
+				<if test="createBy != null">
+					#{createBy},
+				</if>
+				<if test="updateDate != null">
+					#{updateDate},
+				</if>
+				<if test="updateBy != null">
+					#{updateBy},
+				</if>
+				<if test="remarks != null">
+					#{remarks},
+				</if>
+				<if test="enname != null">
+					#{enname},
+				</if>
+				<if test="name != null">
+					#{name},
+				</if>
+				
+				
+			</trim>
+		)
+	
+	</update>
+	
+	<update id="updateBySelective" parameterType="SecureRole">
+		
+		update secure_role set 
+		
+		<trim suffixOverrides=",">
+				<if test="createDate != null">
+					create_date = #{createDate},
+				</if>
+				<if test="createBy != null">
+					create_by = #{createBy},
+				</if>
+				<if test="updateDate != null">
+					update_date = #{updateDate},
+				</if>
+				<if test="updateBy != null">
+					update_by = #{updateBy},
+				</if>
+				<if test="remarks != null">
+					remarks = #{remarks},
+				</if>
+				<if test="enname != null">
+					enname = #{enname},
+				</if>
+				<if test="name != null">
+					name = #{name},
+				</if>
+				
+			</trim>
+		
+		where id = #{id}
+	
+	</update>
+	
+	
+</mapper>
