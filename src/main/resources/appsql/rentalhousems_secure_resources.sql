@@ -16,45 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `rental_order`
+-- Table structure for table `secure_resources`
 --
 
-DROP TABLE IF EXISTS `rental_order`;
+DROP TABLE IF EXISTS `secure_resources`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rental_order` (
+CREATE TABLE `secure_resources` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
   `create_Date` datetime DEFAULT NULL,
   `create_By` varchar(45) DEFAULT NULL,
   `update_Date` datetime DEFAULT NULL,
   `update_By` varchar(45) DEFAULT NULL,
-  `remarks` varchar(45) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `month` int(11) DEFAULT NULL,
-  `rental_Amount` decimal(12,2) DEFAULT NULL,
-  `electricity_Amount` decimal(12,2) DEFAULT NULL,
-  `power_Consumption` decimal(12,2) DEFAULT NULL,
-  `total_Amount` decimal(12,2) DEFAULT NULL,
-  `rental_Type` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `last_Power_Consumption` decimal(12,2) DEFAULT NULL,
-  `del_Flag` int(11) DEFAULT NULL,
-  `deduction_Amount` decimal(12,2) DEFAULT NULL,
-  `diff_Power_Consumption` decimal(12,2) DEFAULT NULL,
-  `user_id` int(11) DEFAULT '0' COMMENT '用户外键ID',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `rental_unique` (`year`,`month`,`rental_Type`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `remarks` varchar(245) DEFAULT NULL,
+  `del_flag` int(11) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `srcurl` varchar(45) DEFAULT NULL COMMENT '资源路径',
+  `permission` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统资源';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `rental_order`
+-- Dumping data for table `secure_resources`
 --
 
-LOCK TABLES `rental_order` WRITE;
-/*!40000 ALTER TABLE `rental_order` DISABLE KEYS */;
-INSERT INTO `rental_order` VALUES (1,'2017-12-14 14:58:40',NULL,'2017-12-14 15:04:27',NULL,'',2017,1,2000.00,350.00,8500.00,2350.00,0,100,8000.00,0,0.00,500.00,3);
-/*!40000 ALTER TABLE `rental_order` ENABLE KEYS */;
+LOCK TABLES `secure_resources` WRITE;
+/*!40000 ALTER TABLE `secure_resources` DISABLE KEYS */;
+/*!40000 ALTER TABLE `secure_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -66,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-20  9:12:36
+-- Dump completed on 2017-12-20  9:12:37

@@ -1,5 +1,7 @@
 package com.cobee.rentalhousems.entity;
 
+import java.util.Set;
+
 /**
  * <pre>
  * 安全框架 - 角色表
@@ -20,6 +22,16 @@ public class SecureRole extends BaseEntity {
 	private String enname;
 	// 角色中文名字
 	private String name;
+
+	private Set<SecureResources> resources;
+
+	public Set<SecureResources> getResources() {
+		return resources;
+	}
+
+	public void setResources(Set<SecureResources> resources) {
+		this.resources = resources;
+	}
 
 	public String getEnname() {
 		return enname;

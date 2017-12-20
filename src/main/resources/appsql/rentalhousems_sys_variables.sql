@@ -34,8 +34,9 @@ CREATE TABLE `sys_variables` (
   `standard_Renting_Electricity` decimal(12,2) DEFAULT NULL,
   `standard_Berth_Electricity` decimal(12,2) DEFAULT NULL,
   `user_id` int(11) DEFAULT '0' COMMENT '用户外键ID',
+  `del_flag` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +45,7 @@ CREATE TABLE `sys_variables` (
 
 LOCK TABLES `sys_variables` WRITE;
 /*!40000 ALTER TABLE `sys_variables` DISABLE KEYS */;
+INSERT INTO `sys_variables` VALUES (2,'2017-12-14 14:55:33',NULL,'2017-12-14 15:04:27',NULL,NULL,8500.00,8000.00,0.70,1.03,3,0),(3,'2017-12-16 18:06:03',NULL,'2017-12-16 18:06:03',NULL,NULL,0.00,0.00,0.00,0.00,4,0);
 /*!40000 ALTER TABLE `sys_variables` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-12 20:27:58
+-- Dump completed on 2017-12-20  9:12:36

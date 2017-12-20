@@ -16,45 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `rental_order`
+-- Table structure for table `secure_user`
 --
 
-DROP TABLE IF EXISTS `rental_order`;
+DROP TABLE IF EXISTS `secure_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rental_order` (
+CREATE TABLE `secure_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `create_Date` datetime DEFAULT NULL,
   `create_By` varchar(45) DEFAULT NULL,
   `update_Date` datetime DEFAULT NULL,
   `update_By` varchar(45) DEFAULT NULL,
-  `remarks` varchar(45) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `month` int(11) DEFAULT NULL,
-  `rental_Amount` decimal(12,2) DEFAULT NULL,
-  `electricity_Amount` decimal(12,2) DEFAULT NULL,
-  `power_Consumption` decimal(12,2) DEFAULT NULL,
-  `total_Amount` decimal(12,2) DEFAULT NULL,
-  `rental_Type` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `last_Power_Consumption` decimal(12,2) DEFAULT NULL,
-  `del_Flag` int(11) DEFAULT NULL,
-  `deduction_Amount` decimal(12,2) DEFAULT NULL,
-  `diff_Power_Consumption` decimal(12,2) DEFAULT NULL,
-  `user_id` int(11) DEFAULT '0' COMMENT '用户外键ID',
+  `remarks` varchar(245) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `mobile` varchar(45) DEFAULT NULL,
+  `del_flag` int(11) DEFAULT NULL,
+  `realname` varchar(45) DEFAULT NULL COMMENT '真实姓名',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `rental_unique` (`year`,`month`,`rental_Type`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='管理人员用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `rental_order`
+-- Dumping data for table `secure_user`
 --
 
-LOCK TABLES `rental_order` WRITE;
-/*!40000 ALTER TABLE `rental_order` DISABLE KEYS */;
-INSERT INTO `rental_order` VALUES (1,'2017-12-14 14:58:40',NULL,'2017-12-14 15:04:27',NULL,'',2017,1,2000.00,350.00,8500.00,2350.00,0,100,8000.00,0,0.00,500.00,3);
-/*!40000 ALTER TABLE `rental_order` ENABLE KEYS */;
+LOCK TABLES `secure_user` WRITE;
+/*!40000 ALTER TABLE `secure_user` DISABLE KEYS */;
+INSERT INTO `secure_user` VALUES (3,'2017-12-14 14:55:33',NULL,'2017-12-14 14:55:33',NULL,NULL,'cobee','d1465a4fed4a138f074b3490a5574b48','18027041862',0,'陈淦森'),(4,'2017-12-16 18:06:03',NULL,'2017-12-16 18:06:03',NULL,NULL,'admin','68a43d1a89793013cfa3425717aa190a','18027041863',NULL,'admin');
+/*!40000 ALTER TABLE `secure_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

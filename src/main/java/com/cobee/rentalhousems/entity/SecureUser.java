@@ -1,5 +1,7 @@
 package com.cobee.rentalhousems.entity;
 
+import java.util.Set;
+
 public class SecureUser extends BaseEntity {
 
 	/**
@@ -13,9 +15,27 @@ public class SecureUser extends BaseEntity {
 	private Integer isRememberMe;
 
 	private SysVariables sysVariables;
+	private Set<SecureRole> roleSet;
+	private Set<SecureResources> resourcesSet;
 
 	public SecureUser() {
 		super();
+	}
+
+	public Set<SecureResources> getResourcesSet() {
+		return resourcesSet;
+	}
+
+	public void setResourcesSet(Set<SecureResources> resourcesSet) {
+		this.resourcesSet = resourcesSet;
+	}
+
+	public Set<SecureRole> getRoleSet() {
+		return roleSet;
+	}
+
+	public void setRoleSet(Set<SecureRole> roleSet) {
+		this.roleSet = roleSet;
 	}
 
 	public Integer getIsRememberMe() {
