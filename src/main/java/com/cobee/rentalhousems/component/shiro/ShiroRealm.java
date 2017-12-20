@@ -67,7 +67,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		SecureRole secureRole = new SecureRole();
 		secureRole.setSecureUser(user);
 		List<SecureRole> secureRoleList = secureRoleService.findUserRoles(secureRole);
-		// 2,获取用户权限
+		// 2,获取用户角色权限
 		if (!CollectionUtils.isEmpty(secureRoleList))
 		{
 			for (SecureRole po : secureRoleList)
