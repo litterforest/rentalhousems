@@ -38,6 +38,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 		}
 		objectMapper = new ObjectMapper();
 		this.cacheName = cacheName;
+		this.expiredTime = expiredTime;
 	}
 	
 	@Override
@@ -57,7 +58,8 @@ public class RedisCache<K, V> implements Cache<K, V> {
 				jedis = jedisBean.getJedis();
 				SimplePrincipalCollection spc = (SimplePrincipalCollection) key;
 				SecureUser secureUser = (SecureUser) spc.getPrimaryPrincipal();
-				String jsonStr = jedis.hget(cacheName, secureUser.getUsername() + secureUser.getId());
+				String redisKey = cacheName + ":" + secureUser.getUsername() + secureUser.getId();
+				String jsonStr = jedis.get(redisKey);
 				if (StringUtils.isNotBlank(jsonStr))
 				{
 					value = (V) objectMapper.readValue(jsonStr, SimpleAuthorizationInfo.class);
@@ -104,7 +106,9 @@ public class RedisCache<K, V> implements Cache<K, V> {
 				String jsonStr = objectMapper.writeValueAsString(value);
 				if (StringUtils.isNotBlank(jsonStr))
 				{
-					jedis.hset(cacheName, secureUser.getUsername() + secureUser.getId(), jsonStr);
+					String redisKey = cacheName + ":" + secureUser.getUsername() + secureUser.getId();
+					jedis.set(redisKey, jsonStr);
+					jedis.expire(redisKey, expiredTime);
 				}
 			}
 			catch (JsonProcessingException e)
@@ -123,6 +127,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 		return value;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public V remove(K key) throws CacheException {
 		V value = null;
@@ -135,14 +140,15 @@ public class RedisCache<K, V> implements Cache<K, V> {
 				jedis = jedisBean.getJedis();
 				SimplePrincipalCollection spc = (SimplePrincipalCollection) key;
 				SecureUser secureUser = (SecureUser) spc.getPrimaryPrincipal();
-				String jsonStr = jedis.hget(cacheName, secureUser.getUsername() + secureUser.getId());
+				String redisKey = cacheName + ":" + secureUser.getUsername() + secureUser.getId();
+				String jsonStr = jedis.get(redisKey);
 				if (StringUtils.isNotBlank(jsonStr))
 				{
 					value = (V) objectMapper.readValue(jsonStr, SimpleAuthorizationInfo.class);
 				}
 				
 				// 2,删除redis中的用户权限数据
-				jedis.hdel(cacheName, secureUser.getUsername() + secureUser.getId());
+				jedis.del(redisKey);
 				
 			}
 			catch (JsonProcessingException e)

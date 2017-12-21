@@ -36,9 +36,6 @@ public class RedisCacheManager implements CacheManager, Initializable, Destroyab
 
 	@Override
 	public <K, V> Cache<K, V> getCache(String name) throws CacheException {
-
-		System.out.println("cache name:" + name);
-		
 		return new RedisCache<K, V>(jedisBean, expiredTime, name);
 	}
 
