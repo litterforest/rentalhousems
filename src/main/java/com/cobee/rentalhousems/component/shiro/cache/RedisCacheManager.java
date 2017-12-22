@@ -12,10 +12,9 @@ import com.cobee.rentalhousems.component.redis.JedisBean;
 
 public class RedisCacheManager implements CacheManager, Initializable, Destroyable {
 
-	private static final String AUTHORIZATIONCACHENAME = "redisAuthorizationCache";
-	
 	private JedisBean jedisBean;
 	private int expiredTime;
+	private String authorizationCacheName;
 
 	public void setJedisBean(JedisBean jedisBean) {
 		this.jedisBean = jedisBean;
@@ -23,6 +22,10 @@ public class RedisCacheManager implements CacheManager, Initializable, Destroyab
 
 	public void setExpiredTime(int expiredTime) {
 		this.expiredTime = expiredTime;
+	}
+
+	public void setAuthorizationCacheName(String authorizationCacheName) {
+		this.authorizationCacheName = authorizationCacheName;
 	}
 
 	@Override
@@ -40,12 +43,11 @@ public class RedisCacheManager implements CacheManager, Initializable, Destroyab
 	@SuppressWarnings("unchecked")
 	@Override
 	public <K, V> Cache<K, V> getCache(String name) throws CacheException {
-		
-		if (StringUtils.equals(AUTHORIZATIONCACHENAME, name))
-		{
+
+		if (StringUtils.equals(authorizationCacheName, name)) {
 			return (Cache<K, V>) new AuthoRedisCache(jedisBean, expiredTime, name);
 		}
-		
+
 		return null;
 	}
 

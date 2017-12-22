@@ -14,6 +14,7 @@
 	<bean id="cacheManager" class="com.cobee.rentalhousems.component.shiro.cache.RedisCacheManager">
         <property name="jedisBean" ref="jedisBean" />
         <property name="expiredTime" value="${shiro.cache.expired}" />
+        <property name="authorizationCacheName" value="${shiro.cache.authorizationCacheName}" />
     </bean>
     
     <bean id="shiroRealm" class="com.cobee.rentalhousems.component.shiro.ShiroRealm" >
