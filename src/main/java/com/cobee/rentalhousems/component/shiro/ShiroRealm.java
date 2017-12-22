@@ -23,6 +23,7 @@ import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.service.SecureResourcesService;
 import com.cobee.rentalhousems.service.SecureRoleService;
 import com.cobee.rentalhousems.service.SecureUserService;
+import com.cobee.rentalhousems.util.NumericUtils;
 
 public class ShiroRealm extends AuthorizingRealm {
 
@@ -63,39 +64,67 @@ public class ShiroRealm extends AuthorizingRealm {
 		SecureUser user = (SecureUser) pc.getPrimaryPrincipal();
 		Set<String> roles = new HashSet<>();
 		Set<String> stringPermissions = new HashSet<>();
-		// 1，获取用户角色
-		SecureRole secureRole = new SecureRole();
-		secureRole.setSecureUser(user);
-		List<SecureRole> secureRoleList = secureRoleService.findUserRoles(secureRole);
-		// 2,获取用户角色权限
-		if (!CollectionUtils.isEmpty(secureRoleList))
+		// 管理员拥有所有角色和权限
+		if (NumericUtils.equal(user.getIsAdmin(), 1))
 		{
-			for (SecureRole po : secureRoleList)
+			SecureRole secureRole = new SecureRole();
+			List<SecureRole> secureRoleList = secureRoleService.list(secureRole);
+			if (!CollectionUtils.isEmpty(secureRoleList))
 			{
-				roles.add(po.getEnname());
-				SecureResources secureResources = new SecureResources();
-				secureResources.setSecureRole(po);
-				List<SecureResources> secureResourcesList = secureResourcesService.findRolePermissions(secureResources);
-				if (!CollectionUtils.isEmpty(secureResourcesList))
+				for (SecureRole po : secureRoleList)
 				{
-					for (SecureResources posr : secureResourcesList)
+					roles.add(po.getEnname());
+				}
+			}
+			
+			SecureResources secureResources = new SecureResources();
+			List<SecureResources> secureResourcesList = secureResourcesService.list(secureResources);
+			if (!CollectionUtils.isEmpty(secureResourcesList))
+			{
+				for (SecureResources po : secureResourcesList)
+				{
+					stringPermissions.add(po.getPermission());
+				}
+			}
+			
+		}
+		else
+		{
+			// 1，获取用户角色
+			SecureRole secureRole = new SecureRole();
+			secureRole.setSecureUser(user);
+			List<SecureRole> secureRoleList = secureRoleService.findUserRoles(secureRole);
+			// 2,获取用户角色权限
+			if (!CollectionUtils.isEmpty(secureRoleList))
+			{
+				for (SecureRole po : secureRoleList)
+				{
+					roles.add(po.getEnname());
+					SecureResources secureResources = new SecureResources();
+					secureResources.setSecureRole(po);
+					List<SecureResources> secureResourcesList = secureResourcesService.findRolePermissions(secureResources);
+					if (!CollectionUtils.isEmpty(secureResourcesList))
 					{
-						stringPermissions.add(posr.getPermission());
+						for (SecureResources posr : secureResourcesList)
+						{
+							stringPermissions.add(posr.getPermission());
+						}
 					}
 				}
 			}
-		}
-		// 3,获取用户直接权限
-		SecureResources secureResources = new SecureResources();
-		secureResources.setSecureUser(user);
-		List<SecureResources> secureResourcesList = secureResourcesService.findRolePermissions(secureResources);
-		if (!CollectionUtils.isEmpty(secureResourcesList))
-		{
-			for (SecureResources po : secureResourcesList)
+			// 3,获取用户直接权限
+			SecureResources secureResources = new SecureResources();
+			secureResources.setSecureUser(user);
+			List<SecureResources> secureResourcesList = secureResourcesService.findRolePermissions(secureResources);
+			if (!CollectionUtils.isEmpty(secureResourcesList))
 			{
-				stringPermissions.add(po.getPermission());
+				for (SecureResources po : secureResourcesList)
+				{
+					stringPermissions.add(po.getPermission());
+				}
 			}
 		}
+		
 		
 		simpleAuthorizationInfo.setRoles(roles);
 		simpleAuthorizationInfo.setStringPermissions(stringPermissions);

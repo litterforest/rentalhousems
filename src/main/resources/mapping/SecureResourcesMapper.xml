@@ -3,16 +3,55 @@
 <mapper namespace="com.cobee.rentalhousems.dao.impl.SecureResourcesMapper">
 	
 	<select id="list" resultType="SecureResources" >
-	
 		select a.* from secure_resources a
 		where a.del_flag = 0
-	
+				
+		<if test="isMenu != null">
+			and a.is_Menu = #{isMenu}
+		</if>
+		
+		<if test="additionalCriteria != null">
+			${additionalCriteria}
+		</if>
+				
+		<choose>
+			<when test="orderBy != null and orderBy != ''">
+				${orderBy}
+			</when>
+			<otherwise>
+				
+			</otherwise>
+		</choose>
+		
 	</select>
 	
 	<select id="get" resultType="SecureResources" parameterType="integer" >
 	
 		select a.* from secure_resources a where a.id = #{id}
 		
+	</select>
+	
+	<select id="findMenusByUserId" resultType="SecureResources" parameterType="integer" >
+		
+		select distinct
+			a.name,
+			a.sort,
+			a.srcurl,
+			a.permission
+		from secure_resources a
+		left join secure_role_resources b on b.resources_id = a.id
+		left join secure_user_role c on c.role_id = b.role_id
+		where c.user_id = #{userID} and a.del_flag = 0 and a.is_menu = 1
+		union
+		select distinct
+			a.name,
+			a.sort,
+			a.srcurl,
+			a.permission
+		from secure_resources a
+		left join secure_user_resources b on b.resources_id = a.id
+		where b.user_id = #{userID} and a.del_flag = 0 and a.is_menu = 1
+	
 	</select>
 	
 	<select id="findRolePermissions" resultType="SecureResources" parameterType="SecureResources" >

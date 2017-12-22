@@ -22,4 +22,9 @@ public class SecureResourcesServiceImpl extends AbstractService<SecureResources,
 		return dao.findUserPermissions(secureResources);
 	}
 
+	@Override
+	public List<SecureResources> findMenusByUserId(Integer userID) {
+		return dao.findMenusByUserId(userID);
+	}
+
 }

@@ -11,7 +11,12 @@
 	<%@ include file="include/header.jsp" %>
 	<div class="success" >${param.msg }</div>
 	<div class="error" >${param.errorMsg }</div>
-	<table>
+	
+	<p>
+		${menus.webContent }
+	</p>
+	
+	<%-- <table>
 		<tr>
 			<td>
 			<shiro:hasRole name="admin">
@@ -20,6 +25,6 @@
 			</td>
 			<td><a href="${ctx }/sysVariables/form">租房参数设定</a></td>
 		</tr>
-	</table>
+	</table> --%>
 </body>
 </html>

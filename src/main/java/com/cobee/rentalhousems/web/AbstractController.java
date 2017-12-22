@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import com.cobee.rentalhousems.component.redis.JedisBean;
 import com.cobee.rentalhousems.entity.SecureUser;
+import com.cobee.rentalhousems.service.SecureResourcesService;
+import com.cobee.rentalhousems.service.SecureRoleService;
 
 public abstract class AbstractController {
 	
@@ -17,6 +19,10 @@ public abstract class AbstractController {
 	
 	@Autowired
 	protected JedisBean jedisBean;
+	@Autowired
+	protected SecureRoleService secureRoleService;
+	@Autowired
+	protected SecureResourcesService secureResourcesService;
 	
 	/**
 	 * <pre>获取已登录的用户对象</pre>

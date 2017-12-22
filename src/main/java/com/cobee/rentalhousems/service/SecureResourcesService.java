@@ -10,4 +10,6 @@ public interface SecureResourcesService extends BaseService<SecureResources> {
 	
 	List<SecureResources> findUserPermissions(SecureResources secureResources);
 	
+	List<SecureResources> findMenusByUserId(Integer userID);
+	
 }

@@ -18,9 +18,29 @@ public abstract class BaseEntity implements Serializable {
 	private String remarks;
 	// 0未审核 100审核成功
 	private Integer status;
+	// 排序条件
+	private String orderBy;
+	// 额外条件
+	private String additionalCriteria;
 
 	public BaseEntity() {
 		super();
+	}
+
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
+	public String getAdditionalCriteria() {
+		return additionalCriteria;
+	}
+
+	public void setAdditionalCriteria(String additionalCriteria) {
+		this.additionalCriteria = additionalCriteria;
 	}
 
 	public Integer getStatus() {
@@ -79,24 +99,16 @@ public abstract class BaseEntity implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public String getStatusDesc()
-	{
-		if (getStatus() == null)
-		{
+	public String getStatusDesc() {
+		if (getStatus() == null) {
 			return "";
-		}
-		else if (getStatus() == 0)
-		{
+		} else if (getStatus() == 0) {
 			return "未审核";
-		}
-		else if (getStatus() == 100)
-		{
+		} else if (getStatus() == 100) {
 			return "审核通过";
-		}
-		else
-		{
+		} else {
 			return "";
 		}
 	}
-	
+
 }

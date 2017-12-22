@@ -10,4 +10,6 @@ public interface SecureResourcesDao extends BaseDao<SecureResources> {
 	
 	List<SecureResources> findUserPermissions(SecureResources secureResources);
 	
+	List<SecureResources> findMenusByUserId(Integer userID);
+	
 }

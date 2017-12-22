@@ -1,9 +1,12 @@
 package com.cobee.rentalhousems.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +14,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cobee.rentalhousems.dao.SecureUserDao;
+import com.cobee.rentalhousems.entity.SecureResources;
 import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.service.AbstractService;
+import com.cobee.rentalhousems.service.SecureResourcesService;
 import com.cobee.rentalhousems.service.SecureUserService;
 import com.cobee.rentalhousems.service.SysVariablesService;
+import com.cobee.rentalhousems.util.NumericUtils;
 
 @Service
 public class SecureUserServiceImpl extends AbstractService<SecureUser, SecureUserDao> implements SecureUserService {
 
 	@Autowired
 	private SysVariablesService sysVariablesService;
+	@Autowired
+	private SecureResourcesService secureResourcesService;
 	
 	@Override
 	@Transactional(readOnly = false)
@@ -64,6 +72,59 @@ public class SecureUserServiceImpl extends AbstractService<SecureUser, SecureUse
 		
 		super.save(baseUser);
 		
+	}
+
+	@Override
+	public SecureResources getUserMenus() {
+		
+		Session session = SecurityUtils.getSubject().getSession();
+		Object obj = session.getAttribute("loginuser_menus");
+		if (obj != null)
+		{
+			return (SecureResources) obj;
+		}
+		else
+		{
+			SecureUser user = (SecureUser) SecurityUtils.getSubject().getPrincipal();
+			List<SecureResources> secureResourcesList;
+			// 管理员拥有权限
+			if (NumericUtils.equal(user.getIsAdmin(), 1))
+			{
+				SecureResources secureResources = new SecureResources();
+				secureResources.setIsMenu(1);
+				secureResources.setOrderBy(" order by a.sort ");
+				secureResourcesList = secureResourcesService.list(secureResources);
+			}
+			else
+			{
+				secureResourcesList = secureResourcesService.findMenusByUserId(user.getId());
+			}
+			if (!CollectionUtils.isEmpty(secureResourcesList))
+			{
+				SecureResources root = new SecureResources();
+				root.setId(0);
+				buildMenuTree(root, secureResourcesList);
+				session.setAttribute("loginuser_menus", root);
+				return root;
+			}
+		}
+		
+		return null;
+	}
+	
+	private void buildMenuTree(SecureResources menu, List<SecureResources> secureResourcesList)
+	{
+		Iterator<SecureResources> iter = secureResourcesList.iterator();
+		while(iter.hasNext())
+		{
+			SecureResources po = iter.next();
+			if (NumericUtils.equal(po.getParentId(), menu.getId()))
+			{
+				menu.addMenu(po);
+				iter.remove();
+				buildMenuTree(po, secureResourcesList);
+			}
+		}
 	}
 
 }

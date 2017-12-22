@@ -13,6 +13,8 @@ public class SecureUser extends BaseEntity {
 	private String mobile;
 	private String realname;
 	private Integer isRememberMe;
+	// 是否为管理员 0不是 1是
+	private Integer isAdmin;
 
 	private SysVariables sysVariables;
 	private Set<SecureRole> roleSet;
@@ -20,6 +22,14 @@ public class SecureUser extends BaseEntity {
 
 	public SecureUser() {
 		super();
+	}
+
+	public Integer getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Integer isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 	public Set<SecureResources> getResourcesSet() {
