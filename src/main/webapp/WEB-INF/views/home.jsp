@@ -12,9 +12,9 @@
 	<div class="success" >${param.msg }</div>
 	<div class="error" >${param.errorMsg }</div>
 	
-	<p>
-		${menus.webContent }
-	</p>
+	
+	${menus.webContent }
+	
 	
 	<%-- <table>
 		<tr>

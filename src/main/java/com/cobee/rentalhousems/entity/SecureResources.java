@@ -125,7 +125,8 @@ public class SecureResources extends BaseEntity {
 	{
 		if (!NumericUtils.equal(super.getId(), 0))
 		{
-			sbuff.append("<a href=\"/rentalhousems"+ this.srcurl +"\" >"+ this.name +"</a><br/>");
+			sbuff.append("<ul>");
+			sbuff.append("<li><a href=\"/rentalhousems"+ this.srcurl +"\" >"+ this.name +"</a></li>");
 		}
 		if (!CollectionUtils.isEmpty(menuList))
 		{
@@ -133,6 +134,10 @@ public class SecureResources extends BaseEntity {
 			{
 				po.buildWebContent(sbuff);
 			}
+		}
+		if (!NumericUtils.equal(super.getId(), 0))
+		{
+			sbuff.append("</ul>");
 		}
 	}
 
