@@ -12,7 +12,7 @@
 		<typeAlias type="com.cobee.rentalhousems.entity.SysVariables" alias="SysVariables" />
 		<typeAlias type="com.cobee.rentalhousems.entity.SecureUser" alias="SecureUser" />
 		<typeAlias type="com.cobee.rentalhousems.entity.SecureRole" alias="SecureRole" />
-		<typeAlias type="com.cobee.rentalhousems.entity.SecureResources" alias="SecureResources" />
+		<typeAlias type="com.cobee.rentalhousems.entity.logical.SecureResourcesLogic" alias="SecureResources" />
 		
 	</typeAliases>
 </configuration>

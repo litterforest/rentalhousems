@@ -1,6 +1,5 @@
 package com.cobee.rentalhousems.service.impl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +16,7 @@ import com.cobee.rentalhousems.dao.SecureUserDao;
 import com.cobee.rentalhousems.entity.SecureResources;
 import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.SysVariables;
+import com.cobee.rentalhousems.entity.logical.SecureResourcesLogic;
 import com.cobee.rentalhousems.service.AbstractService;
 import com.cobee.rentalhousems.service.SecureResourcesService;
 import com.cobee.rentalhousems.service.SecureUserService;
@@ -103,28 +103,13 @@ public class SecureUserServiceImpl extends AbstractService<SecureUser, SecureUse
 			{
 				SecureResources root = new SecureResources();
 				root.setId(0);
-				buildMenuTree(root, secureResourcesList);
+				SecureResourcesLogic.buildMenuTree(root, secureResourcesList);
 				session.setAttribute("loginuser_menus", root);
 				return root;
 			}
 		}
 		
 		return null;
-	}
-	
-	private void buildMenuTree(SecureResources menu, List<SecureResources> secureResourcesList)
-	{
-		Iterator<SecureResources> iter = secureResourcesList.iterator();
-		while(iter.hasNext())
-		{
-			SecureResources po = iter.next();
-			if (NumericUtils.equal(po.getParentId(), menu.getId()))
-			{
-				menu.addMenu(po);
-				iter.remove();
-				buildMenuTree(po, secureResourcesList);
-			}
-		}
 	}
 
 }

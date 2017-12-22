@@ -1,12 +1,5 @@
 package com.cobee.rentalhousems.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.shiro.util.CollectionUtils;
-
-import com.cobee.rentalhousems.util.NumericUtils;
-
 public class SecureResources extends BaseEntity {
 
 	/**
@@ -24,30 +17,9 @@ public class SecureResources extends BaseEntity {
 
 	private SecureRole secureRole;
 	private SecureUser secureUser;
-	private List<SecureResources> menuList;
 
 	public SecureResources() {
 		super();
-	}
-
-	public List<SecureResources> getMenuList() {
-		return menuList;
-	}
-
-	public void setMenuList(List<SecureResources> menuList) {
-		this.menuList = menuList;
-	}
-	
-	public void addMenu(SecureResources secureResources)
-	{
-		if (secureResources != null)
-		{
-			if (menuList == null)
-			{
-				menuList = new ArrayList<SecureResources>();
-			}
-			menuList.add(secureResources);
-		}
 	}
 
 	public Integer getIsMenu() {
@@ -112,33 +84,6 @@ public class SecureResources extends BaseEntity {
 
 	public void setPermission(String permission) {
 		this.permission = permission;
-	}
-	
-	public String getWebContent()
-	{
-		StringBuilder sbuff = new StringBuilder();
-		buildWebContent(sbuff);
-		return sbuff.toString();
-	}
-	
-	private void buildWebContent(StringBuilder sbuff)
-	{
-		if (!NumericUtils.equal(super.getId(), 0))
-		{
-			sbuff.append("<ul>");
-			sbuff.append("<li><a href=\"/rentalhousems"+ this.srcurl +"\" >"+ this.name +"</a></li>");
-		}
-		if (!CollectionUtils.isEmpty(menuList))
-		{
-			for (SecureResources po : menuList)
-			{
-				po.buildWebContent(sbuff);
-			}
-		}
-		if (!NumericUtils.equal(super.getId(), 0))
-		{
-			sbuff.append("</ul>");
-		}
 	}
 
 }
