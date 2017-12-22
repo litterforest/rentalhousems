@@ -1,5 +1,6 @@
 package com.cobee.rentalhousems.component.shiro.cache;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
@@ -11,6 +12,8 @@ import com.cobee.rentalhousems.component.redis.JedisBean;
 
 public class RedisCacheManager implements CacheManager, Initializable, Destroyable {
 
+	private static final String AUTHORIZATIONCACHENAME = "redisAuthorizationCache";
+	
 	private JedisBean jedisBean;
 	private int expiredTime;
 
@@ -34,9 +37,16 @@ public class RedisCacheManager implements CacheManager, Initializable, Destroyab
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <K, V> Cache<K, V> getCache(String name) throws CacheException {
-		return new RedisCache<K, V>(jedisBean, expiredTime, name);
+		
+		if (StringUtils.equals(AUTHORIZATIONCACHENAME, name))
+		{
+			return (Cache<K, V>) new AuthoRedisCache(jedisBean, expiredTime, name);
+		}
+		
+		return null;
 	}
 
 }
