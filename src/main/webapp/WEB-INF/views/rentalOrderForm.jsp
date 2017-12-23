@@ -5,8 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="_csrf" content="${_csrf.token}"/>
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>收费订单</title>
 <%@ include file="include/pageResources.jsp" %>
 <script type="text/javascript">
@@ -28,6 +26,7 @@
 <body>
 	<%@ include file="include/header.jsp" %>
 	<form action="${ctx }/rentalorder/save" method="post" >
+		<input type="hidden" name="_csrf" value="${_csrf.token}" >
 		<table border="1">
 			<tr>
 				<td>年份</td>
