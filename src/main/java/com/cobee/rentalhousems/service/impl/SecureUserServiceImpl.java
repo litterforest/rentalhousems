@@ -101,7 +101,7 @@ public class SecureUserServiceImpl extends AbstractService<SecureUser, SecureUse
 			}
 			if (!CollectionUtils.isEmpty(secureResourcesList))
 			{
-				SecureResources root = new SecureResources();
+				SecureResources root = new SecureResourcesLogic();
 				root.setId(0);
 				SecureResourcesLogic.buildMenuTree(root, secureResourcesList);
 				session.setAttribute("loginuser_menus", root);
