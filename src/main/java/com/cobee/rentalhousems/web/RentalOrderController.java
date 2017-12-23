@@ -35,6 +35,8 @@ public class RentalOrderController extends AbstractController {
 		
 //		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrder);
 		PageRequest pageRequest = new PageRequest();
+		pageRequest.setCurrentPage(1);
+		pageRequest.setPageSize(10);
 		rentalOrder.setPageRequest(pageRequest);
 		Page<RentalOrder> page = rentalOrderService.findByPage(rentalOrder);
 		model.addAttribute("rentalOrderList", page.getContent());
