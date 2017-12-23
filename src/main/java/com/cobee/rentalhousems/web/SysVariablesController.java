@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.service.SysVariablesService;
+import com.cobee.rentalhousems.web.support.AbstractController;
 
 @Controller
 @RequestMapping("/sysVariables")

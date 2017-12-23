@@ -20,6 +20,7 @@ import com.cobee.rentalhousems.component.page.Page;
 import com.cobee.rentalhousems.component.page.PageRequest;
 import com.cobee.rentalhousems.entity.RentalOrder;
 import com.cobee.rentalhousems.service.RentalOrderService;
+import com.cobee.rentalhousems.web.support.AbstractController;
 
 @Controller
 @RequestMapping("/rentalorder")

@@ -1,4 +1,4 @@
-package com.cobee.rentalhousems.web;
+package com.cobee.rentalhousems.web.support;
 
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;

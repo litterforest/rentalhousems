@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.service.SecureUserService;
+import com.cobee.rentalhousems.web.support.AbstractController;
 
 @Controller
 @RequestMapping("/SecureUser")

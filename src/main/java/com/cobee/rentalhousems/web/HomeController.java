@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.cobee.rentalhousems.entity.SecureResources;
 import com.cobee.rentalhousems.service.SecureUserService;
+import com.cobee.rentalhousems.web.support.AbstractController;
 
 @Controller
 public class HomeController extends AbstractController {
