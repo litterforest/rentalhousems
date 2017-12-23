@@ -1,8 +1,8 @@
-package com.cobee.rentalhousems.dao;
+package com.cobee.rentalhousems.dao.support;
 
 import java.util.List;
 
-import com.cobee.rentalhousems.entity.BaseEntity;
+import com.cobee.rentalhousems.entity.support.BaseEntity;
 
 public interface BaseDao<T extends BaseEntity > {
 	

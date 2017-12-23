@@ -1,4 +1,4 @@
-package com.cobee.rentalhousems.service;
+package com.cobee.rentalhousems.service.support;
 
 import java.util.Date;
 import java.util.List;
@@ -8,8 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cobee.rentalhousems.dao.BaseDao;
-import com.cobee.rentalhousems.entity.BaseEntity;
+import com.cobee.rentalhousems.component.page.Page;
+import com.cobee.rentalhousems.dao.support.BaseDao;
+import com.cobee.rentalhousems.entity.support.BaseEntity;
 
 @Transactional(readOnly = true)
 public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>> implements BaseService<T> {
@@ -24,6 +25,16 @@ public abstract class AbstractService<T extends BaseEntity, E extends BaseDao<T>
 		return dao.list(obj);
 	}
 	
+	@Override
+	public Page<T> findByPage(T obj) {
+		return null;
+	}
+
+	@Override
+	public Page<T> findByPage(T obj, String selectSqlID) {
+		return null;
+	}
+
 	@Transactional(readOnly = false)
 	@Override
 	public void save(T obj) {

@@ -47,7 +47,18 @@
 				and a.year = #{year}
 			</if>
 		</where>
-		order by a.year desc, a.month desc
+		
+		<choose>
+			<when test="pageRequest != null and pageRequest.orderByClause != null and pageRequest.orderByClause != ''">
+				${pageRequest.orderByClause}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+		
+		<if test="pageRequest != null and pageRequest.limitClause != null and pageRequest.limitClause != ''">
+			${pageRequest.limitClause}
+		</if>
 	
 	</select>
 	

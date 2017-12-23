@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cobee.rentalhousems.component.page.Page;
+import com.cobee.rentalhousems.component.page.PageRequest;
 import com.cobee.rentalhousems.entity.RentalOrder;
 import com.cobee.rentalhousems.service.RentalOrderService;
 
@@ -29,9 +31,14 @@ public class RentalOrderController extends AbstractController {
 	@GetMapping("/list")
 	public String list(@ModelAttribute("rentalOrder") RentalOrder rentalOrder, Model model)
 	{
-		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrder);
-		model.addAttribute("rentalOrderList", rentalOrderList);
+		
+//		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrder);
+		PageRequest pageRequest = new PageRequest();
+		rentalOrder.setPageRequest(pageRequest);
+		Page<RentalOrder> page = rentalOrderService.findByPage(rentalOrder);
+		model.addAttribute("rentalOrderList", page.getContent());
 		return "rentalOrderList";
+		
 	}
 	
 	@GetMapping("/form")

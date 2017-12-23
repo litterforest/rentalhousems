@@ -8,17 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cobee.rentalhousems.dao.RentalOrderDao;
-import com.cobee.rentalhousems.entity.SecureUser;
+import com.cobee.rentalhousems.dao.impl.RentalOrderMapper;
 import com.cobee.rentalhousems.entity.RentalOrder;
+import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.SysVariables;
-import com.cobee.rentalhousems.service.AbstractService;
 import com.cobee.rentalhousems.service.RentalOrderService;
 import com.cobee.rentalhousems.service.SysVariablesService;
+import com.cobee.rentalhousems.service.support.PagingAndSortingService;
 import com.cobee.rentalhousems.util.NumericUtils;
 
 @Service
-public class RentalOrderServiceImpl extends AbstractService<RentalOrder,RentalOrderDao> implements RentalOrderService {
+public class RentalOrderServiceImpl extends PagingAndSortingService<RentalOrder, RentalOrderMapper> implements RentalOrderService {
 	
 	@Autowired
 	private SysVariablesService sysVariablesService;

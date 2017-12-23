@@ -1,5 +1,7 @@
 package com.cobee.rentalhousems.entity;
 
+import com.cobee.rentalhousems.entity.support.BaseEntity;
+
 public class SecureResources extends BaseEntity {
 
 	/**

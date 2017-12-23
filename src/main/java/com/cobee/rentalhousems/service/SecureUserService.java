@@ -2,6 +2,7 @@ package com.cobee.rentalhousems.service;
 
 import com.cobee.rentalhousems.entity.SecureResources;
 import com.cobee.rentalhousems.entity.SecureUser;
+import com.cobee.rentalhousems.service.support.BaseService;
 
 public interface SecureUserService extends BaseService<SecureUser> {
 

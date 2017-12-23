@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.cobee.rentalhousems.dao.SecureResourcesDao;
 import com.cobee.rentalhousems.entity.SecureResources;
-import com.cobee.rentalhousems.service.AbstractService;
 import com.cobee.rentalhousems.service.SecureResourcesService;
+import com.cobee.rentalhousems.service.support.AbstractService;
 
 @Service
 public class SecureResourcesServiceImpl extends AbstractService<SecureResources, SecureResourcesDao> implements SecureResourcesService {

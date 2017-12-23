@@ -15,11 +15,11 @@
 		</if>
 				
 		<choose>
-			<when test="orderBy != null and orderBy != ''">
-				${orderBy}
+			<when test="pageRequest != null and pageRequest.orderByClause != null and pageRequest.orderByClause != ''">
+				${pageRequest.orderByClause}
 			</when>
 			<otherwise>
-				
+				order by a.year desc, a.month desc
 			</otherwise>
 		</choose>
 		

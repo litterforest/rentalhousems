@@ -2,6 +2,8 @@ package com.cobee.rentalhousems.entity;
 
 import java.util.Set;
 
+import com.cobee.rentalhousems.entity.support.BaseEntity;
+
 /**
  * <pre>
  * 安全框架 - 角色表

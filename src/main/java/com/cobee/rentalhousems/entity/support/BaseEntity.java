@@ -1,7 +1,9 @@
-package com.cobee.rentalhousems.entity;
+package com.cobee.rentalhousems.entity.support;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.cobee.rentalhousems.component.page.PageRequest;
 
 public abstract class BaseEntity implements Serializable {
 
@@ -18,21 +20,13 @@ public abstract class BaseEntity implements Serializable {
 	private String remarks;
 	// 0未审核 100审核成功
 	private Integer status;
-	// 排序条件
-	private String orderBy;
 	// 额外条件
 	private String additionalCriteria;
 
+	private PageRequest pageRequest; // 分页请求对象，当前页和每页数据大小;数据由浏览器传递过来
+
 	public BaseEntity() {
 		super();
-	}
-
-	public String getOrderBy() {
-		return orderBy;
-	}
-
-	public void setOrderBy(String orderBy) {
-		this.orderBy = orderBy;
 	}
 
 	public String getAdditionalCriteria() {
@@ -97,6 +91,14 @@ public abstract class BaseEntity implements Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public PageRequest getPageRequest() {
+		return pageRequest;
+	}
+
+	public void setPageRequest(PageRequest pageRequest) {
+		this.pageRequest = pageRequest;
 	}
 
 	public String getStatusDesc() {

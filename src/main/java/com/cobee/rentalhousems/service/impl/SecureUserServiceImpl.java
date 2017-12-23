@@ -12,15 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cobee.rentalhousems.component.page.PageRequest;
 import com.cobee.rentalhousems.dao.SecureUserDao;
 import com.cobee.rentalhousems.entity.SecureResources;
 import com.cobee.rentalhousems.entity.SecureUser;
 import com.cobee.rentalhousems.entity.SysVariables;
 import com.cobee.rentalhousems.entity.logical.SecureResourcesLogic;
-import com.cobee.rentalhousems.service.AbstractService;
 import com.cobee.rentalhousems.service.SecureResourcesService;
 import com.cobee.rentalhousems.service.SecureUserService;
 import com.cobee.rentalhousems.service.SysVariablesService;
+import com.cobee.rentalhousems.service.support.AbstractService;
 import com.cobee.rentalhousems.util.NumericUtils;
 
 @Service
@@ -92,7 +93,8 @@ public class SecureUserServiceImpl extends AbstractService<SecureUser, SecureUse
 			{
 				SecureResources secureResources = new SecureResources();
 				secureResources.setIsMenu(1);
-				secureResources.setOrderBy(" order by a.sort ");
+				PageRequest pageRequest = new PageRequest();
+				pageRequest.setOrderByClause(" order by a.sort ");
 				secureResourcesList = secureResourcesService.list(secureResources);
 			}
 			else

@@ -2,6 +2,8 @@ package com.cobee.rentalhousems.entity;
 
 import java.util.Set;
 
+import com.cobee.rentalhousems.entity.support.BaseEntity;
+
 public class SecureUser extends BaseEntity {
 
 	/**
