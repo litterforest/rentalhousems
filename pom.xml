@@ -42,6 +42,7 @@
 		<shiro-version>1.3.2</shiro-version>
 		<redis-version>2.8.1</redis-version>
 		<org.springframework-version>4.3.12.RELEASE</org.springframework-version>
+		<org.springframework.security-version>4.2.3.RELEASE</org.springframework.security-version>
 	</properties>
 
 	<dependencies>
@@ -127,6 +128,13 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- Security (used for CSRF protection only) -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework.security-version}</version>
 		</dependency>
 
 		<dependency>
