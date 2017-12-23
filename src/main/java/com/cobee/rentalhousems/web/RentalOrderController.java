@@ -1,7 +1,6 @@
 package com.cobee.rentalhousems.web;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public class RentalOrderController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/isCreatePermission", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(value = "/isCreatePermission", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public Map<String, Object> isCreatePermission(RentalOrder rentalOrder)
 	{

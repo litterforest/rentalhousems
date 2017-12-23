@@ -9,6 +9,7 @@
 </head>
 <body>
 	<form action="${ctx }/doLogin" method="post" >
+		<input type="hidden" name="_csrf" value="${_csrf.token}" >
 		<div class="success" >${param.msg }</div>
 		<div class="error" >${param.errorMsg }</div>
 		<table>

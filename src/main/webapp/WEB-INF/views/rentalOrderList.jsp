@@ -19,7 +19,7 @@
 	{
 		// 检查是否有订单未审核通过
 		$.ajax({
-		   type: "POST",
+		   type: "GET",
 		   url: "${ctx }/rentalorder/isCreatePermission",
 		   data: {rentalType : $("#rentalType").val()},
 		   success: function(data){

@@ -19,6 +19,7 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
+	<import resource="classpath:applicationContext-web-security.xml" />
 	<import resource="classpath:applicationContext-shiro.xml" />
 
 </beans>
