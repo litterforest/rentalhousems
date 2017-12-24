@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cobee.rentalhousems.component.page.Page;
 import com.cobee.rentalhousems.component.page.PageRequest;
 import com.cobee.rentalhousems.entity.RentalOrder;
+import com.cobee.rentalhousems.entity.logical.RentalOrderLogic;
 import com.cobee.rentalhousems.service.RentalOrderService;
 import com.cobee.rentalhousems.web.support.AbstractController;
 
@@ -29,18 +29,17 @@ public class RentalOrderController extends AbstractController {
 	private RentalOrderService rentalOrderService;
 	
 	@GetMapping("/list")
-	public String list(@ModelAttribute("rentalOrder") RentalOrder rentalOrder, Model model)
+	public String list(Model model)
 	{
-		
-//		List<RentalOrder> rentalOrderList = rentalOrderService.list(rentalOrder);
-		PageRequest pageRequest = new PageRequest();
-		pageRequest.setCurrentPage(1);
-		pageRequest.setPageSize(10);
-		rentalOrder.setPageRequest(pageRequest);
-		Page<RentalOrder> page = rentalOrderService.findByPage(rentalOrder);
-		model.addAttribute("rentalOrderList", page.getContent());
 		return "rentalOrderList";
-		
+	}
+	
+	@GetMapping(value = "/list/data", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public Map<String, Object> listData(RentalOrder rentalOrder)
+	{
+		Page<RentalOrder> page = rentalOrderService.findByPage(rentalOrder);
+		return RentalOrderLogic.toJqGridData(page);
 	}
 	
 	@GetMapping("/form")

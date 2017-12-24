@@ -71,10 +71,13 @@ public class PagingAndSortingService<T extends BaseEntity, E extends BaseDao<T>>
 		// 1.2,计算首页、上一页、下一页、尾页、总页
 		Page<T> page = new Page<T>();
 		Integer totalCount = doTotalCount(session, countSql, paramObj, bs.getParameterMappings());
-		if (totalCount == 0) return page;
+		page.setTotalCount(totalCount);
+		if (totalCount == 0) 
+		{
+			return page;
+		}
 		page.setPageNo(pageRequest.getCurrentPage());
 		page.setPageSize(pageRequest.getPageSize());
-		page.setTotalCount(totalCount);
 		
 		if (logger.isDebugEnabled()) 
 		{

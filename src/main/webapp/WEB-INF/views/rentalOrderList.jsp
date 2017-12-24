@@ -11,7 +11,51 @@
 	
 	$(document).ready(function() {
 		
-		$("#rentalType").val("${rentalOrder.rentalType}");
+		// $("#rentalType").val("${rentalOrder.rentalType}");
+		// 渲染表格和分页栏
+        jQuery("#grid-table").jqGrid({
+        	url : '${ctx}/rentalorder/list/data?' + $("#searchForm").serialize(), //组件创建完成之后请求数据的url
+				datatype : "json", //请求数据返回的类型。可选json,xml,txt
+				colNames : [ '操作', '收费日期', '收租类型', '租费', '电费', '扣减', '总费用', '审核状态', '创建日期'],//表格标题
+				colModel : [ //表格每一列的配置信息。包括名字，索引，宽度,对齐方式.....
+		             {name : '', width : 110, align : "left", sortable : false, formatter:function(cellvalue, options, rowObject){
+		            	 var resultStr = "";
+		            	 resultStr += "<input type=\"button\" value=\"查看\" onclick=\"location='${ctx}/rentalorder/detail/"+ rowObject.id +"'\" >";
+		            	 if (rowObject.status != 100)
+	            		 {
+		            		 resultStr += "<input type=\"button\" value=\"审核\" onclick=\"location='${ctx}/rentalorder/detail/"+ rowObject.id +";q=1'\" >";
+	            		 }
+		            	 return resultStr;
+		             }},
+		             {name : 'yearAndMonth',index : '',width : 140,align : "center", sortable : false},
+		             {name : 'rentalTypeDesc',index : '',width : 140,align : "center", sortable : false},
+				 	 {name : 'rentalAmount',index : '',width : 120, align : "center", sortable : false},
+		          	 {name : 'electricityAmount',index : '',width : 100, sortable : false, align : "center", sortable : false},
+		          	 {name : 'deductionAmount',index : '',width : 100, sortable : false, align : "center", sortable : false},
+		          	 {name : 'totalAmount',index : '',width : 100, sortable : false, align : "center", sortable : false},
+		          	 {name : 'statusDesc',index : '',width : 100, sortable : false, align : "center", sortable : false},
+		          	 {name : 'createDate',index : '',width : 120, sortable : false, align : "center", sortable : false},
+		           ],
+				rowNum : 10,//一页显示多少条
+				rowList : [ 10, 20, 50, 100 ],//可供用户选择一页显示多少条
+				pager : '#grid-pager',//表格页脚的占位符(一般是div)的id
+				mtype : "get",//向后台请求数据的ajax的类型。可选post,get
+				viewrecords : true,
+				autowidth: true,
+				multiselect: false,
+				altRows: true,
+				height: 330,
+				shrinkToFit: false,
+				prmNames: { page: "pageRequest.currentPage", rows: "pageRequest.pageSize" },
+				jsonReader: {repeatitems: false, userdata: "userdata" },
+				loadComplete: function(data){
+					
+				},
+				
+    	});
+    	/*创建jqGrid的操作按钮容器*/
+    	/*可以控制界面上增删改查的按钮是否显示*/
+    	jQuery("#grid-table").jqGrid('navGrid', '#grid-pager', {edit : false, add : false, del : false, refresh: false, search: false});
 		
 	});
 	
@@ -39,11 +83,17 @@
 		
 	}
 	
+	function searchData()
+	{
+		jQuery("#grid-table").jqGrid('setGridParam', 
+				{ url : '${ctx}/rentalorder/list/data?' + $("#searchForm").serialize(), page : 1 }).trigger("reloadGrid");
+	}
+	
 </script>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
-	<form action="${ctx }/rentalorder/list" method="get" >
+	<form id="searchForm" action="" method="get" >
 	<p>
 		收租类型:<select id="rentalType" name="rentalType" >
 					<option value="">全部</option>
@@ -53,52 +103,14 @@
 		年份:<input id="year" name="year" type="text" value="${rentalOrder.year }" >
 	</p>
 	<p>
-		<input type="button" value="添加" onclick="create_onclick();" > <input type="reset" value="重置" > <input type="submit" value="查询" >
+		<input type="button" value="添加" onclick="create_onclick();" > <input type="reset" value="重置" > <input type="button" value="查询" onclick="searchData();" >
 	</p>
 	</form>
-	<table border="1">
-		<tr>
-			<th>操作</th>
-			<th>收费日期</th>
-			<th>收租类型</th>
-			<th>租费</th>
-			<th>电费</th>
-			<th>扣减</th>
-			<th>总费用</th>
-			<th>审核状态</th>
-			<th>创建日期</th>
-		</tr>
-		
-		<c:choose>
-			<c:when test="${ not empty rentalOrderList }">
-				<c:forEach items="${rentalOrderList }" var="rentalOrder" >
-					<tr>
-						<td> 
-							<input type="button" value="查看" onclick="location='${ctx}/rentalorder/detail/${rentalOrder.id}'" >
-							<c:if test="${rentalOrder.status ne 100 }">
-								<input type="button" value="审核" onclick="location='${ctx}/rentalorder/detail/${rentalOrder.id};q=1'" >
-							</c:if>
-						</td>
-						<td>${rentalOrder.year }-${rentalOrder.month }</td>
-						<td>${rentalOrder.rentalTypeDesc }</td>
-						<td>${rentalOrder.rentalAmount }</td>
-						<td>${rentalOrder.electricityAmount }</td>
-						<td>${rentalOrder.deductionAmount }</td>
-						<td>${rentalOrder.totalAmount }</td>
-						<td>${rentalOrder.statusDesc }</td>
-						<td><fmt:formatDate value="${rentalOrder.createDate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					</tr>
-				</c:forEach>
-			</c:when>
-			
-			<c:otherwise>
-				<tr>
-					<td colspan="9" align="center" >暂时还没有收费单数据</td>
-				</tr>
-			</c:otherwise>
-			
-		</c:choose>
 	
-	</table>
+	<!-- 表格 -->
+	<table id="grid-table"></table>
+	<!-- 分页栏 -->
+	<div id="grid-pager"></div>
+	
 </body>
 </html>
