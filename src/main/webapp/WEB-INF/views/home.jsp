@@ -12,19 +12,7 @@
 	<div class="success" >${param.msg }</div>
 	<div class="error" >${param.errorMsg }</div>
 	
+	<app:menus menus="${menus }"></app:menus>
 	
-	${menus.webContent }
-	
-	
-	<%-- <table>
-		<tr>
-			<td>
-			<shiro:hasRole name="admin">
-				<a href="${ctx }/rentalorder/list">二手房收租管理</a>
-			</shiro:hasRole>
-			</td>
-			<td><a href="${ctx }/sysVariables/form">租房参数设定</a></td>
-		</tr>
-	</table> --%>
 </body>
 </html>

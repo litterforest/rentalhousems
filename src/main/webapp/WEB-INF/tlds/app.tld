@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>app</short-name>
+	<uri>/app-tags</uri>
+	<display-name>项目自定义标签</display-name>
+	
+	<!-- 主页菜单生成控件 -->
+	<tag>
+		<name>menus</name>
+		<tag-class>com.cobee.rentalhousems.component.web.tag.MenuTag</tag-class>
+		<body-content>JSP</body-content>
+		<display-name>主页菜单生成控件</display-name>
+		<small-icon>111</small-icon>
+		<description>主页菜单生成控件</description>
+		<attribute>
+			<name>menus</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>用户菜单数据</description>
+		</attribute>
+	</tag>
+	
+</taglib>

@@ -34,27 +34,6 @@ public class SecureResourcesLogic extends SecureResources {
 			menuList.add(secureResources);
 		}
 	}
-
-	public String getWebContent() {
-		StringBuilder sbuff = new StringBuilder();
-		buildWebContent(sbuff);
-		return sbuff.toString();
-	}
-
-	private void buildWebContent(StringBuilder sbuff) {
-		if (!NumericUtils.equal(super.getId(), 0)) {
-			sbuff.append("<ul>");
-			sbuff.append("<li><a href=\"/rentalhousems" + super.getSrcurl() + "\" >" + super.getName() + "</a></li>");
-		}
-		if (!CollectionUtils.isEmpty(menuList)) {
-			for (SecureResources po : menuList) {
-				((SecureResourcesLogic) po).buildWebContent(sbuff);
-			}
-		}
-		if (!NumericUtils.equal(super.getId(), 0)) {
-			sbuff.append("</ul>");
-		}
-	}
 	
 	public static void buildMenuTree(SecureResources menu, List<SecureResources> secureResourcesList)
 	{
