@@ -1,8 +1,6 @@
 package com.cobee.rentalhousems.component.web.tag;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
@@ -60,7 +58,6 @@ public class MenuTag extends TagSupport {
 		String ctxPath = this.pageContext.getServletContext().getContextPath();
 		if (!NumericUtils.equal(root.getId(), 0)) {
 			sbuff.append("<ul>");
-			
 			sbuff.append("<li><a href=\"" + ctxPath + root.getSrcurl() + "\" >" + root.getName() + "</a></li>");
 		}
 		if (!CollectionUtils.isEmpty(root.getMenuList())) {
