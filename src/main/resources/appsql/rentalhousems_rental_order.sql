@@ -28,7 +28,7 @@ CREATE TABLE `rental_order` (
   `create_By` varchar(45) DEFAULT NULL,
   `update_Date` datetime DEFAULT NULL,
   `update_By` varchar(45) DEFAULT NULL,
-  `remarks` varchar(45) DEFAULT NULL,
+  `remarks` varchar(245) DEFAULT NULL,
   `year` int(11) DEFAULT NULL,
   `month` int(11) DEFAULT NULL,
   `rental_Amount` decimal(12,2) DEFAULT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `rental_order` (
   `user_id` int(11) DEFAULT '0' COMMENT '用户外键ID',
   PRIMARY KEY (`id`),
   UNIQUE KEY `rental_unique` (`year`,`month`,`rental_Type`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-20  9:12:36
+-- Dump completed on 2017-12-26 15:11:38

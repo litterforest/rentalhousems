@@ -33,7 +33,7 @@ CREATE TABLE `secure_role` (
   `remarks` varchar(45) DEFAULT NULL,
   `del_flag` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='安全框架-角色表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='安全框架-角色表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `secure_role` (
 
 LOCK TABLES `secure_role` WRITE;
 /*!40000 ALTER TABLE `secure_role` DISABLE KEYS */;
+INSERT INTO `secure_role` VALUES (1,'admin','管理员',NULL,NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `secure_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-20  9:12:37
+-- Dump completed on 2017-12-26 15:11:38

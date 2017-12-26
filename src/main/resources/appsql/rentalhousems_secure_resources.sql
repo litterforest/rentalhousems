@@ -35,8 +35,9 @@ CREATE TABLE `secure_resources` (
   `sort` int(11) DEFAULT NULL,
   `srcurl` varchar(45) DEFAULT NULL COMMENT '资源路径',
   `permission` varchar(45) DEFAULT NULL,
+  `is_Menu` int(11) DEFAULT '0' COMMENT '是否为菜单，0否 1是',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统资源';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统资源';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +46,7 @@ CREATE TABLE `secure_resources` (
 
 LOCK TABLES `secure_resources` WRITE;
 /*!40000 ALTER TABLE `secure_resources` DISABLE KEYS */;
+INSERT INTO `secure_resources` VALUES (1,0,NULL,NULL,NULL,NULL,NULL,0,'二手房收租管理',1,'/rentalorder/list',NULL,1),(2,0,NULL,NULL,NULL,NULL,NULL,0,'租房参数设定',2,'/sysVariables/form',NULL,1);
 /*!40000 ALTER TABLE `secure_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-20  9:12:37
+-- Dump completed on 2017-12-26 15:11:38
